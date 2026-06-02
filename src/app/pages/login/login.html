@@ -1,0 +1,35 @@
+<div class="login-card">
+
+    <div class="header">
+        <span class="sistema">Sistema de Vendas</span>
+
+        <h1 class="titulo">
+            Bem-vindo
+        </h1>
+
+        <p class="subtitulo">
+            Faça login para acessar sua conta
+        </p>
+    </div>
+
+    <form [formGroup]="loginForm" class="loginForm">
+        <mat-form-field class="forms" appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="Digite seu email" formControlName="email">
+        </mat-form-field>
+
+        <mat-form-field class="forms" appearance="outline">
+            <mat-label>Senha</mat-label>
+            <input matInput type="password" formControlName="senha" placeholder="Digite sua senha" [type]="hide() ? 'password' : 'text'">
+            <button matIconButton matSuffix class="eye-button" (click)="clickEvent($event)"
+                [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide()">
+                <mat-icon>{{hide() ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+        </mat-form-field>
+    </form>
+
+    <button class="botao" mat-raised-button (click)="login()">
+        Entrar
+    </button>
+
+</div>
