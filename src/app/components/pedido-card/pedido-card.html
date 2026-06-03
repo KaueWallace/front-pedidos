@@ -1,0 +1,50 @@
+<div class="card">
+
+    <div class="topo">
+
+        <h3>
+            Pedido #{{ pedido().id }}
+        </h3>
+
+        <span
+            class="status"
+            [class.pendente]="pedido().status === 'PENDENTE'"
+            [class.enviado]="pedido().status === 'ENVIADO'"
+            [class.entregue]="pedido().status === 'ENTREGUE'"
+            [class.cancelado]="pedido().status === 'CANCELADO'">
+
+            {{ pedido().status }}
+
+        </span>
+
+    </div>
+
+    <p class="data">
+        {{ pedido().dataPedido }}
+    </p>
+
+    <p class="itens">
+        {{ pedido().itens.length }} item(s)
+    </p>
+
+    <p class="valor">
+        R$ {{ pedido().valorTotal }}
+    </p>
+
+    <div class="acoes">
+
+        <button class="detalhes" [routerLink]="['/meus-pedidos', pedido().id]">
+            Ver detalhes
+        </button>
+
+        @if (pedido().status === 'PENDENTE') {
+
+            <button class="cancelar">
+                Cancelar
+            </button>
+
+        }
+
+    </div>
+
+</div>

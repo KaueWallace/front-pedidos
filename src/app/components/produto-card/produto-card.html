@@ -1,0 +1,43 @@
+<div class="card">
+
+    <img [src]="produto().imagem" alt="Imagem de produto">
+
+    <h3 class="nome">
+        {{ produto().nome }}
+    </h3>
+
+    <p class="preco">
+        R$ {{ produto().preco }}
+    </p>
+
+    <p class="estoque">
+        Estoque: <span [style.color]="corEstoque()">{{ produto().estoque }} unidades</span>
+    </p>
+
+    <div class="quantidade">
+
+        <button class="btn-quantidade" (click)="diminuir()">
+
+            -
+        </button>
+
+        <span>
+            {{ quantidade() }}
+        </span>
+
+        <button class="btn-quantidade" (click)="aumentar()">
+
+            +
+        </button>
+
+    </div>
+
+
+    <button class="botao" (click)="openSnackBar(`${produto().nome} adicionado ao carrinho!`, 'Fechar')">
+        <mat-icon>shopping_cart</mat-icon>
+        <p>
+            Adicionar ao carrinho
+        </p>
+    </button>
+
+</div>

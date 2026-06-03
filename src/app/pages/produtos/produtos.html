@@ -1,1 +1,19 @@
-<p>produtos works!</p>
+<section class="produtos">
+    <h1 class="titulo">
+        Produtos
+    </h1>
+
+    <section class="cards">
+        <div class="grid">
+
+            @for (produto of produtos(); track produto.id) {
+
+            <app-produto-card [produto]="produto">
+            </app-produto-card>
+
+            }
+
+        </div>
+    </section>
+
+</section>

@@ -1,0 +1,44 @@
+<h1>Meus Pedidos</h1>
+
+@if (pedidos().length === 0) {
+
+<div class="empty-state">
+
+    <mat-icon>
+        receipt_long
+    </mat-icon>
+
+    <h2>
+        Nenhum pedido encontrado
+    </h2>
+
+    <p>
+        Você ainda não realizou nenhum pedido.
+    </p>
+
+    <a routerLink="/produtos" class="btn-comprar">
+
+        Ver produtos
+
+    </a>
+
+</div>
+
+} @else {
+
+<div class="grid">
+
+    @for (pedido of pedidos(); track pedido.id) {
+
+    <div class="pedido-card">
+
+        <app-pedido-card [pedido]="pedido">
+        </app-pedido-card>
+
+    </div>
+
+    }
+
+</div>
+
+}

@@ -1,6 +1,9 @@
 import { Routes } from '@angular/router';
 import { Produtos } from './pages/produtos/produtos';
 import { Login } from './pages/login/login';
+import { MainLayout } from './pages/main-layout/main-layout';
+import { MeusPedidos } from './pages/meus-pedidos/meus-pedidos';
+import { DetalhePedido } from './pages/detalhe-pedido/detalhe-pedido';
 
 export const routes: Routes = [
     {
@@ -12,8 +15,25 @@ export const routes: Routes = [
         path: 'login',
         component: Login
     },
+
     {
-        path: 'produtos',
-        component: Produtos
+        path: '',
+        component: MainLayout,
+        children: [
+
+            {
+                path: 'produtos',
+                component: Produtos
+            },
+            {
+                path: 'meus-pedidos',
+                component: MeusPedidos
+            },
+            {
+                path: 'meus-pedidos/:id',
+                component: DetalhePedido
+            }
+        ]
     }
+
 ];

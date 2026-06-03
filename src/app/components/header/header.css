@@ -1,0 +1,109 @@
+.navbar {
+    height: 72px;
+
+    background: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 32px;
+
+    box-shadow:
+        0 4px 20px rgba(124, 115, 192, .08);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    color: var(--primary);
+
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+
+nav {
+    display: flex;
+    gap: 32px;
+}
+
+nav a {
+    text-decoration: none;
+
+    color: var(--text-primary);
+
+    font-weight: 500;
+
+    transition: .2s;
+}
+
+nav a:hover {
+    color: var(--primary);
+}
+
+.acoes {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.carrinho,
+.usuario {
+    border: none;
+
+    background: transparent;
+
+    cursor: pointer;
+
+    position: relative;
+
+    color: var(--text-primary);
+}
+
+.carrinho {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 8px 16px;
+
+    border-radius: 999px;
+
+    background: rgba(124, 115, 192, .1);
+
+    color: var(--primary);
+
+    font-weight: 600;
+}
+
+.usuario mat-icon {
+    font-size: 34px;
+    width: 34px;
+    height: 34px;
+}
+
+.badge {
+    position: absolute;
+
+    top: -6px;
+    right: -10px;
+
+    width: 20px;
+    height: 20px;
+
+    border-radius: 50%;
+
+    background: var(--primary);
+
+    color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: .7rem;
+
+    font-weight: 600;
+}

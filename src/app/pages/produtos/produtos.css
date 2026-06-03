@@ -1,0 +1,42 @@
+:host {
+    display: block;
+
+    min-height: 100vh;
+
+    padding: 32px;
+
+    background: linear-gradient(
+        135deg,
+        #F3FFF0,
+        #EAF8FF
+    );
+}
+
+.produtos {
+    width: 100%;
+}
+
+.card {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.titulo {
+    text-align: center;
+    margin-bottom: 24px;
+
+    color: var(--text-primary);
+}
+
+.grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(280px, 25%));
+
+    gap: 24px;
+
+    justify-content: space-around;
+}

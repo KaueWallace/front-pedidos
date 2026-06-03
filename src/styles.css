@@ -43,4 +43,27 @@
     --radius-sm: 8px;
     --radius-md: 12px;
     --radius-lg: 24px;
+
+    
+}
+
+
+.success-snackbar {
+    background-color: #6256B2 !important;
+    --mdc-snackbar-container-color: #6256B2 !important;
+    --mat-snack-bar-button-color: #E8FFCE !important;
+}
+
+.mat-mdc-snack-bar-container .mat-mdc-snackbar-surface {
+    background-color: #6256B2 !important;
+    
+}
+
+.mat-snack-bar-container-animations-enabled.mat-snack-bar-container-enter {
+    border-radius: 10px;
+}
+
+
+.success-snackbar .mat-mdc-snack-bar-label {
+    color: white !important;
 }

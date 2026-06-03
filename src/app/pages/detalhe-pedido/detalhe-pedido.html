@@ -1,0 +1,135 @@
+@if (pedido(); as pedido) {
+
+<div class="container">
+
+    <button
+        class="voltar"
+        routerLink="/meus-pedidos">
+
+        <mat-icon>
+            arrow_back
+        </mat-icon>
+
+        Voltar para meus pedidos
+
+    </button>
+    <div class="header">
+
+        <div>
+
+            <h1>
+                Pedido #{{ pedido.id }}
+            </h1>
+
+            <p class="data">
+                {{ pedido.dataPedido }}
+            </p>
+
+        </div>
+
+        <span class="status" [class.pendente]="pedido.status === 'PENDENTE'"
+            [class.enviado]="pedido.status === 'ENVIADO'" [class.entregue]="pedido.status === 'ENTREGUE'"
+            [class.cancelado]="pedido.status === 'CANCELADO'">
+
+            {{ pedido.status }}
+
+        </span>
+
+    </div>
+
+    <div class="grid">
+
+        <section class="card">
+
+            <h2>
+                Itens do Pedido
+            </h2>
+
+            @for (item of pedido.itens; track $index) {
+
+            <div class="item">
+
+                <div>
+
+                    <h3>
+                        {{ item.produto }}
+                    </h3>
+
+                    <p>
+                        Quantidade:
+                        {{ item.quantidade }}
+                    </p>
+
+                </div>
+
+                <div class="precos">
+
+                    <p>
+                        Unitário:
+                        R$ {{ item.precoUnitario }}
+                    </p>
+
+                    <strong>
+                        R$ {{ item.subTotal }}
+                    </strong>
+
+                </div>
+
+            </div>
+
+            }
+
+        </section>
+
+        <section class="card">
+
+            <h2>
+                Endereço de Entrega
+            </h2>
+
+            <div class="endereco">
+
+                <p class="cidade">
+                    {{ pedido.endereco.cidade }} - {{ pedido.endereco.estado }}
+                </p>
+
+                <p>
+                    {{ pedido.endereco.bairro }}
+                </p>
+
+                <p>
+                    Nº {{ pedido.endereco.numero }}
+                </p>
+
+                @if (pedido.endereco.complemento) {
+
+                <p class="complemento">
+                    {{ pedido.endereco.complemento }}
+                </p>
+
+                }
+
+                <p class="cep">
+                    CEP {{ pedido.endereco.cep }}
+                </p>
+
+            </div>
+
+        </section>
+    </div>
+
+    <div class="resumo">
+
+        <h2>
+            Total do Pedido
+        </h2>
+
+        <p class="total">
+            R$ {{ pedido.valorTotal }}
+        </p>
+
+    </div>
+
+</div>
+
+}

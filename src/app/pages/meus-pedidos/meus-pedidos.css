@@ -1,0 +1,141 @@
+:host {
+    display: block;
+
+    min-height: 100vh;
+
+    padding: 32px;
+
+    background: linear-gradient(
+        135deg,
+        #F3FFF0,
+        #EAF8FF
+    );
+}
+
+h1 {
+    margin-bottom: 32px;
+
+    color: var(--text-primary);
+
+    font-size: 2rem;
+
+    font-weight: 700;
+}
+
+.grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fill, minmax(320px, 1fr));
+
+    gap: 24px;
+}
+
+.pedido-card {
+    background: white;
+
+    border-radius: 20px;
+
+    padding: 24px;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 12px;
+
+    box-shadow:
+        0 4px 20px rgba(124, 115, 192, .08);
+
+    transition:
+        transform .2s ease,
+        box-shadow .2s ease;
+}
+
+.pedido-card:hover {
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 12px 30px rgba(124, 115, 192, .15);
+}
+
+.pedido-card h2 {
+    margin: 0;
+
+    color: var(--text-primary);
+
+    font-size: 1.3rem;
+}
+
+.data {
+    color: #777;
+
+    font-size: .95rem;
+}
+
+.valor {
+    font-size: 1.8rem;
+
+    font-weight: 700;
+
+    color: var(--primary);
+
+    margin: 8px 0;
+}
+
+
+.empty-state {
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    margin-top: 80px;
+
+    padding: 40px;
+}
+
+.empty-state mat-icon {
+    font-size: 80px;
+
+    width: 80px;
+    height: 80px;
+
+    color: var(--primary);
+
+    opacity: .7;
+}
+
+.empty-state h2 {
+    margin-top: 24px;
+
+    color: var(--text-primary);
+}
+
+.empty-state p {
+    color: #777;
+
+    margin-bottom: 24px;
+}
+
+.btn-comprar {
+    padding: 12px 24px;
+
+    border-radius: 12px;
+
+    text-decoration: none;
+
+    background: var(--primary);
+
+    color: white;
+
+    font-weight: 600;
+
+    transition: .2s ease;
+}
+
+.btn-comprar:hover {
+    filter: brightness(.95);
+}
