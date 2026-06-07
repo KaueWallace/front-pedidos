@@ -10,10 +10,20 @@ export class PedidoService {
   private http = inject(HttpClient);
   private api = `http://localhost:8080`;
 
-  listarMeusPedidos() {
+  listarMeusPedidos(status?: string) {
+
+    if (status) {
+
+      return this.http.get<Pedido[]>(
+        `${this.api}/pedidos/meus?status=${status}`
+      );
+
+    }
+
     return this.http.get<Pedido[]>(
       `${this.api}/pedidos/meus`
     );
+
   }
 
   buscarMeuPedido(id: number) {

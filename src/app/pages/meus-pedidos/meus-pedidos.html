@@ -1,3 +1,44 @@
+<div class="header">
+
+    <h1>
+        Meus Pedidos
+    </h1>
+
+    <mat-form-field appearance="outline">
+
+        <mat-label>
+            Filtrar por status
+        </mat-label>
+
+        <mat-select
+            [(ngModel)]="filtroStatus"
+            (selectionChange)="filtrarPedidos()">
+
+            <mat-option value="">
+                Todos
+            </mat-option>
+
+            <mat-option value="PENDENTE">
+                Pendente
+            </mat-option>
+
+            <mat-option value="ENVIADO">
+                Enviado
+            </mat-option>
+
+            <mat-option value="ENTREGUE">
+                Entregue
+            </mat-option>
+
+            <mat-option value="CANCELADO">
+                Cancelado
+            </mat-option>
+
+        </mat-select>
+
+    </mat-form-field>
+
+</div>
 
 @if (pedidos().length === 0) {
 
@@ -12,27 +53,44 @@
     </h2>
 
     <p>
+
+        @if (filtroStatus) {
+
+        Nenhum pedido com o status selecionado.
+
+        } @else {
+
         Você ainda não realizou nenhum pedido.
+
+        }
+
     </p>
 
-    <a routerLink="/produtos" class="btn-comprar">
+    @if (!filtroStatus) {
+
+    <a
+        routerLink="/produtos"
+        class="btn-comprar">
 
         Ver produtos
 
     </a>
 
+    }
+
 </div>
 
 } @else {
 
-<h1>Meus Pedidos</h1>
 <div class="grid">
 
     @for (pedido of pedidos(); track pedido.id) {
 
     <div class="pedido-card">
 
-        <app-pedido-card [pedido]="pedido" (cancelar)="cancelarPedido(pedido.id)">
+        <app-pedido-card
+            [pedido]="pedido"
+            (cancelar)="cancelarPedido(pedido.id)">
         </app-pedido-card>
 
     </div>

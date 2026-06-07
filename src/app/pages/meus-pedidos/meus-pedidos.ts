@@ -6,10 +6,13 @@ import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
 import { PedidoCard } from '../../components/pedido-card/pedido-card';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSelectModule } from '@angular/material/select';
+import { FormsModule } from '@angular/forms';
+
 
 @Component({
   selector: 'app-meus-pedidos',
-  imports: [MatIconModule, RouterLink, PedidoCard],
+  imports: [MatIconModule, RouterLink, PedidoCard, MatSelectModule, FormsModule],
   templateUrl: './meus-pedidos.html',
   styleUrl: './meus-pedidos.css',
 })
@@ -22,6 +25,8 @@ export class MeusPedidos implements OnInit {
 
   pedidos = signal<Pedido[]>([]);
 
+  filtroStatus = '';
+
   ngOnInit(): void {
 
     this.pedidoService
@@ -30,6 +35,26 @@ export class MeusPedidos implements OnInit {
         next: pedidos => {
           this.pedidos.set(pedidos);
         }
+      });
+
+  }
+
+  filtrarPedidos() {
+
+    this.pedidoService
+      .listarMeusPedidos(
+        this.filtroStatus || undefined
+      )
+      .subscribe({
+
+        next: pedidos => {
+
+          this.pedidos.set(
+            pedidos
+          );
+
+        }
+
       });
 
   }
