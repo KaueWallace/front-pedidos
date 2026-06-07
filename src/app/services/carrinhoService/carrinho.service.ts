@@ -1,6 +1,39 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
+import { ItemCarrinhoRequest } from '../../models/carrinho/itemCarrinhoRequest';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
-export class CarrinhoService {}
+export class CarrinhoService {
+
+  private http = inject(HttpClient);
+
+  private api = 'http://localhost:8080/carrinho';
+  
+
+  quantidadeItens = signal<number>(0);
+
+  atualizarQuantidade(quantidade: number) {
+    this.quantidadeItens.set(quantidade);
+  }
+
+  adicionarItem(dto: ItemCarrinhoRequest) {
+    return this.http.post(
+      `${this.api}/itens`,
+      dto,
+      {
+        responseType: 'text'
+      }
+    );
+  }
+
+
+  buscarMeuCarrinho() {
+    return this.http.get<any>(
+      `${this.api}/meu`
+    );
+  }
+
+}

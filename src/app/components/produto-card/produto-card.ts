@@ -3,7 +3,7 @@ import { Produto } from '../../models/produtos/produto';
 
 import {MatSnackBar} from '@angular/material/snack-bar';  
 import { MatIconModule } from '@angular/material/icon';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
+
 
 @Component({
   selector: 'app-produto-card',
@@ -15,17 +15,10 @@ export class ProdutoCard {
   produto = input.required<Produto>();
   quantidade = signal(1);
 
-  comprar = output<{
+  addCarrinho = output<{
     produtoId: number;
     quantidade: number;
   }>();
-
-  private _snackBar = inject(MatSnackBar);
-  
-
-  openSnackBar(message: string, action: string){
-    this._snackBar.open(message, action, { duration: 2000, panelClass: 'success-snackbar'} );
-  }
 
 
   corEstoque(): string {
@@ -55,8 +48,8 @@ export class ProdutoCard {
 
   }
 
-  comprarAgora(){
-    this.comprar.emit({
+  adicionarAoCarrinho(){
+    this.addCarrinho.emit({
       produtoId: this.produto().id,
       quantidade: this.quantidade()
     })

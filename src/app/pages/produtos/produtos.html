@@ -8,7 +8,7 @@
 
             @for (produto of produtos(); track produto.id) {
 
-            <app-produto-card [produto]="produto", (comprar)="comprarProduto($event)">
+            <app-produto-card [produto]="produto", (addCarrinho)="adicionarAoCarrinho($event)">
             </app-produto-card>
 
             }
