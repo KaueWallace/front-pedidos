@@ -32,7 +32,7 @@
 
     <div class="pedido-card">
 
-        <app-pedido-card [pedido]="pedido">
+        <app-pedido-card [pedido]="pedido" (cancelar)="cancelarPedido(pedido.id)">
         </app-pedido-card>
 
     </div>

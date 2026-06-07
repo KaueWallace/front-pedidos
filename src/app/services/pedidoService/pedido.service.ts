@@ -31,8 +31,11 @@ export class PedidoService {
 
   cancelarPedido(id: number) {
     return this.http.patch(
-      `${this.api}/meus/${id}/cancelar`,
-      {}
+      `${this.api}/pedidos/meus/${id}/cancelar`,
+      {},
+      {
+        responseType: 'text'
+      }
     );
   }
 }

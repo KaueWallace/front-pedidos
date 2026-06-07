@@ -1,1 +1,153 @@
-<p>carrinho works!</p>
+@if (carrinho(); as carrinho) {
+
+@if (carrinho.itens.length === 0) {
+
+<div class="empty-state">
+
+    <mat-icon class="empty-icon">
+        shopping_cart
+    </mat-icon>
+
+    <h2>
+        Seu carrinho está vazio
+    </h2>
+
+    <p>
+        Adicione produtos para continuar comprando.
+    </p>
+
+    <button
+        class="btn-produtos"
+        routerLink="/produtos">
+
+        Ver Produtos
+
+    </button>
+
+</div>
+
+} @else {
+
+<div class="container">
+
+    <div class="topo">
+
+        <div>
+
+            <h1>
+                Meu Carrinho
+            </h1>
+
+            <p class="subtitulo">
+                Revise seus produtos antes de finalizar a compra.
+            </p>
+
+        </div>
+
+        <button
+            class="limpar"
+            (click)="limparCarrinho()">
+
+            <mat-icon>
+                delete
+            </mat-icon>
+
+            Limpar Carrinho
+
+        </button>
+
+    </div>
+
+    <div class="lista">
+
+        @for (
+            item of carrinho.itens;
+            track item.produtoId
+        ) {
+
+        <div class="card">
+
+            <div class="info">
+
+                <h3>
+                    {{ item.produto }}
+                </h3>
+
+                <p>
+                    Quantidade:
+                    <strong>
+                        {{ item.quantidade }}
+                    </strong>
+                </p>
+
+                <p>
+                    Unitário:
+                    <strong>
+                        R$ {{ item.precoUnitario }}
+                    </strong>
+                </p>
+
+            </div>
+
+            <div class="acoes">
+
+                <span class="subtotal">
+                    R$ {{ item.subTotal }}
+                </span>
+
+                <button
+                    class="remover"
+                    (click)="removerItem(item.produtoId)">
+
+                    <mat-icon>
+                        delete
+                    </mat-icon>
+
+                    Remover
+
+                </button>
+
+            </div>
+
+        </div>
+
+        }
+
+    </div>
+
+    <div class="resumo">
+
+        <div>
+
+            <h2>
+                Total do Carrinho
+            </h2>
+
+            <p>
+                {{ carrinho.itens.length }}
+                item(ns)
+            </p>
+
+        </div>
+
+        <span>
+            R$ {{ carrinho.total }}
+        </span>
+
+    </div>
+
+    <button class="finalizar" (click)="finalizarCompra()">
+
+        <mat-icon>
+            shopping_bag
+        </mat-icon>
+
+        Finalizar Compra
+
+    </button>
+
+</div>
+
+}
+
+}

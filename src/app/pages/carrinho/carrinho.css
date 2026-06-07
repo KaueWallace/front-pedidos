@@ -1,0 +1,371 @@
+:host {
+    display: block;
+
+    min-height: 88vh;
+
+    padding: 32px;
+
+    background: linear-gradient(
+        135deg,
+        #F3FFF0,
+        #EAF8FF
+    );
+}
+
+.container {
+    max-width: 1100px;
+
+    margin: 0 auto;
+}
+
+.topo {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 24px;
+}
+
+.topo h1 {
+    margin: 0;
+
+    font-size: 2rem;
+
+    font-weight: 700;
+
+    color: var(--text-primary);
+}
+
+.subtitulo {
+    margin-top: 6px;
+
+    color: #777;
+}
+
+.lista {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 18px;
+}
+
+.card {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 24px;
+
+    border-radius: 18px;
+
+    background: white;
+
+    box-shadow:
+        0 6px 20px rgba(0, 0, 0, .05);
+
+    transition: .2s ease;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, .08);
+}
+
+.info h3 {
+    margin: 0 0 12px;
+
+    font-size: 1.4rem;
+
+    color: var(--text-primary);
+}
+
+.info p {
+    margin: 6px 0;
+
+    color: #666;
+}
+
+.info strong {
+    color: var(--text-primary);
+}
+
+.acoes {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-end;
+
+    gap: 14px;
+}
+
+.subtotal {
+    font-size: 1.8rem;
+
+    font-weight: 700;
+
+    color: var(--primary);
+}
+
+.limpar {
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 12px 18px;
+
+    border-radius: 12px;
+
+    border: 1px solid #fecaca;
+
+    background: white;
+
+    color: #dc2626;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: .2s ease;
+}
+
+.limpar:hover {
+    background: #fff5f5;
+
+    border-color: #fca5a5;
+}
+
+.remover {
+    display: flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    padding: 10px 16px;
+
+    border-radius: 10px;
+
+    border: 1px solid #e5e7eb;
+
+    background: #fafafa;
+
+    color: #666;
+
+    font-weight: 500;
+
+    cursor: pointer;
+
+    transition: .2s ease;
+}
+
+.remover:hover {
+    background: #fff5f5;
+
+    color: #dc2626;
+
+    border-color: #fecaca;
+}
+
+.resumo {
+    margin-top: 24px;
+
+    padding: 24px 28px;
+
+    border-radius: 18px;
+
+    background: white;
+
+    box-shadow:
+        0 6px 20px rgba(0, 0, 0, .05);
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+}
+
+.resumo h2 {
+    margin: 0;
+
+    color: var(--text-primary);
+
+    font-size: 1.4rem;
+}
+
+.resumo p {
+    margin-top: 6px;
+
+    color: #777;
+}
+
+.resumo span {
+    font-size: 2rem;
+
+    font-weight: 700;
+
+    color: var(--primary);
+}
+
+.finalizar {
+    width: 100%;
+
+    margin-top: 20px;
+
+    padding: 16px;
+
+    border: none;
+
+    border-radius: 14px;
+
+    background: var(--primary);
+
+    color: white;
+
+    font-size: 1rem;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 8px;
+
+    transition: .2s ease;
+}
+
+.finalizar:hover {
+    filter: brightness(.95);
+
+    transform: translateY(-1px);
+}
+
+.empty-state {
+    min-height: 60vh;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+}
+
+.empty-icon {
+    width: 72px;
+
+    height: 72px;
+
+    font-size: 72px;
+
+    color: var(--primary);
+
+    margin-bottom: 16px;
+
+    opacity: .8;
+}
+
+.empty-state h2 {
+    margin: 0;
+
+    color: var(--text-primary);
+
+    font-size: 2rem;
+
+    font-weight: 700;
+}
+
+.empty-state p {
+    margin-top: 8px;
+
+    color: #777;
+
+    font-size: 1rem;
+}
+
+.btn-produtos {
+    margin-top: 24px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    padding: 12px 24px;
+
+    background: var(--primary);
+
+    color: white;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: .2s ease;
+}
+
+.btn-produtos:hover {
+    filter: brightness(.95);
+}
+
+@media (max-width: 768px) {
+
+    :host {
+        padding: 20px;
+    }
+
+    .topo {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 16px;
+    }
+
+    .card {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 20px;
+    }
+
+    .acoes {
+        width: 100%;
+
+        align-items: stretch;
+    }
+
+    .subtotal {
+        text-align: left;
+    }
+
+    .remover {
+        justify-content: center;
+    }
+
+    .resumo {
+        flex-direction: column;
+
+        gap: 16px;
+
+        text-align: center;
+    }
+}

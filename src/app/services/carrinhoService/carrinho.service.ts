@@ -11,7 +11,7 @@ export class CarrinhoService {
   private http = inject(HttpClient);
 
   private api = 'http://localhost:8080/carrinho';
-  
+
 
   quantidadeItens = signal<number>(0);
 
@@ -33,6 +33,24 @@ export class CarrinhoService {
   buscarMeuCarrinho() {
     return this.http.get<any>(
       `${this.api}/meu`
+    );
+  }
+
+  removerItem(produtoId: number) {
+    return this.http.delete(
+      `${this.api}/itens/${produtoId}`,
+      {
+        responseType: 'text'
+      }
+    );
+  }
+
+  limparCarrinho() {
+    return this.http.delete(
+      `${this.api}/limpar`,
+      {
+        responseType: 'text'
+      }
     );
   }
 
