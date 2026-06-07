@@ -85,10 +85,9 @@ export class Produtos implements OnInit {
         },
 
         error: erro => {
-
+          const erroParser = JSON.parse(erro.error);
           this.snackBar.open(
-            erro.error?.message ??
-            'Erro ao adicionar produto',
+            erroParser.message,
             'Fechar',
             {
               duration: 4000

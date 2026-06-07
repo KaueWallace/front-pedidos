@@ -7,6 +7,7 @@ import { DetalhePedido } from './pages/detalhe-pedido/detalhe-pedido';
 import { Enderecos } from './pages/enderecos/enderecos';
 import { CadastrarEndereco } from './pages/cadastrar-endereco/cadastrar-endereco';
 import { EditarEndereco } from './pages/editar-endereco/editar-endereco';
+import { Carrinho } from './pages/carrinho/carrinho';
 
 export const routes: Routes = [
     {
@@ -47,6 +48,10 @@ export const routes: Routes = [
             {
                 path: 'enderecos/editar/:id',
                 component: EditarEndereco
+            },
+            {
+                path: 'carrinho',
+                component: Carrinho
             }
         ]
     }
