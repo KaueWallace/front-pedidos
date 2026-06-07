@@ -39,7 +39,7 @@
 
         @if (pedido().status === 'PENDENTE') {
 
-            <button class="cancelar">
+            <button class="cancelar" (click)="cancelarPedido()">
                 Cancelar
             </button>
 

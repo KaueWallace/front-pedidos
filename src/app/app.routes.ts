@@ -4,6 +4,9 @@ import { Login } from './pages/login/login';
 import { MainLayout } from './pages/main-layout/main-layout';
 import { MeusPedidos } from './pages/meus-pedidos/meus-pedidos';
 import { DetalhePedido } from './pages/detalhe-pedido/detalhe-pedido';
+import { Enderecos } from './pages/enderecos/enderecos';
+import { CadastrarEndereco } from './pages/cadastrar-endereco/cadastrar-endereco';
+import { EditarEndereco } from './pages/editar-endereco/editar-endereco';
 
 export const routes: Routes = [
     {
@@ -32,6 +35,18 @@ export const routes: Routes = [
             {
                 path: 'meus-pedidos/:id',
                 component: DetalhePedido
+            },
+            {
+                path: 'enderecos',
+                component: Enderecos
+            },
+            {
+                path: 'enderecos/novo',
+                component: CadastrarEndereco
+            },
+            {
+                path: 'enderecos/editar/:id',
+                component: EditarEndereco
             }
         ]
     }

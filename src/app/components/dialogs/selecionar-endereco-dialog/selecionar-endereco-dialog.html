@@ -1,0 +1,53 @@
+<h2>
+    Escolha um endereço
+</h2>
+
+<div class="enderecos">
+
+    @for (
+        endereco of data.enderecos;
+        track endereco.id
+    ) {
+
+        <button
+            class="endereco"
+             [class.selecionado]="isSelecionado(endereco.id)"
+            (click)="
+                enderecoSelecionado.set(
+                    endereco.id
+                )
+            ">
+
+            <strong>
+                {{ endereco.bairro }}
+            </strong>
+
+            <p>
+                {{ endereco.cidade }}
+                -
+                {{ endereco.estado }}
+            </p>
+
+        </button>
+
+    }
+
+</div>
+
+<div class="acoes">
+
+    <button
+        (click)="dialogRef.close()">
+
+        Cancelar
+
+    </button>
+
+    <button
+        (click)="confirmar()">
+
+        Confirmar
+
+    </button>
+
+</div>

@@ -1,4 +1,3 @@
-<h1>Meus Pedidos</h1>
 
 @if (pedidos().length === 0) {
 
@@ -26,6 +25,7 @@
 
 } @else {
 
+<h1>Meus Pedidos</h1>
 <div class="grid">
 
     @for (pedido of pedidos(); track pedido.id) {

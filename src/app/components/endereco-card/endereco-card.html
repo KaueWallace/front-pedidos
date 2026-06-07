@@ -1,0 +1,95 @@
+<div class="card">
+
+    <div class="card-header">
+
+        <div class="localizacao">
+
+            <mat-icon>
+                location_on
+            </mat-icon>
+
+            <div>
+
+                <h3>
+                    {{ endereco().bairro }}
+                </h3>
+
+                <p>
+                    {{ endereco().cidade }} - {{ endereco().estado }}
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="informacoes">
+
+        <div class="linha">
+
+            <span class="label">
+                Número
+            </span>
+
+            <span>
+                {{ endereco().numero }}
+            </span>
+
+        </div>
+
+        <div class="linha">
+
+            <span class="label">
+                CEP
+            </span>
+
+            <span>
+                {{ endereco().cep }}
+            </span>
+
+        </div>
+
+        @if (endereco().complemento) {
+
+            <div class="linha">
+
+                <span class="label">
+                    Complemento
+                </span>
+
+                <span>
+                    {{ endereco().complemento }}
+                </span>
+
+            </div>
+
+        }
+
+    </div>
+
+    <div class="acoes">
+
+        <button class="editar" [routerLink]="['/enderecos/editar', endereco().id]">
+
+            <mat-icon>
+                edit
+            </mat-icon>
+
+            Editar
+
+        </button>
+
+        <button class="excluir" (click)="excluirEndereco()">
+
+            <mat-icon>
+                delete
+            </mat-icon>
+
+            Excluir
+
+        </button>
+
+    </div>
+
+</div>

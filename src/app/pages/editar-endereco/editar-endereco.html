@@ -1,0 +1,136 @@
+<div class="container">
+
+    <button
+        class="voltar"
+        routerLink="/enderecos">
+
+        <mat-icon>
+            arrow_back
+        </mat-icon>
+
+        Voltar para Endereços
+
+    </button>
+
+    <div class="header">
+
+        <h1>
+            Editar Endereço
+        </h1>
+
+        <p>
+            Atualize os dados do endereço.
+        </p>
+
+    </div>
+
+    <form
+        class="form-card"
+        [formGroup]="form"
+        (ngSubmit)="salvar()">
+
+        <div class="grid">
+
+            <mat-form-field appearance="outline">
+
+                <mat-label>
+                    CEP
+                </mat-label>
+
+                <input
+                    matInput
+                    formControlName="cep">
+
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+
+                <mat-label>
+                    Número
+                </mat-label>
+
+                <input
+                    matInput
+                    formControlName="numero">
+
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+
+                <mat-label>
+                    Bairro
+                </mat-label>
+
+                <input
+                    matInput
+                    formControlName="bairro">
+
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+
+                <mat-label>
+                    Estado
+                </mat-label>
+
+                <input
+                    matInput
+                    formControlName="estado">
+
+            </mat-form-field>
+
+            <mat-form-field
+                appearance="outline"
+                class="full">
+
+                <mat-label>
+                    Cidade
+                </mat-label>
+
+                <input
+                    matInput
+                    formControlName="cidade">
+
+            </mat-form-field>
+
+            <mat-form-field
+                appearance="outline"
+                class="full">
+
+                <mat-label>
+                    Complemento
+                </mat-label>
+
+                <input
+                    matInput
+                    formControlName="complemento">
+
+            </mat-form-field>
+
+        </div>
+
+        <div class="acoes">
+
+            <button
+                type="button"
+                class="cancelar"
+                routerLink="/enderecos">
+
+                Cancelar
+
+            </button>
+
+            <button
+                type="submit"
+                class="salvar"
+                [disabled]="form.invalid">
+
+                Salvar Alterações
+
+            </button>
+
+        </div>
+
+    </form>
+
+</div>

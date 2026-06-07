@@ -1,4 +1,4 @@
-import { Component, inject, input, signal } from '@angular/core';
+import { Component, inject, input, output, signal } from '@angular/core';
 import { Produto } from '../../models/produtos/produto';
 
 import {MatSnackBar} from '@angular/material/snack-bar';  
@@ -15,7 +15,13 @@ export class ProdutoCard {
   produto = input.required<Produto>();
   quantidade = signal(1);
 
+  comprar = output<{
+    produtoId: number;
+    quantidade: number;
+  }>();
+
   private _snackBar = inject(MatSnackBar);
+  
 
   openSnackBar(message: string, action: string){
     this._snackBar.open(message, action, { duration: 2000, panelClass: 'success-snackbar'} );
@@ -47,5 +53,12 @@ export class ProdutoCard {
       this.quantidade.update(q => q - 1);
     }
 
+  }
+
+  comprarAgora(){
+    this.comprar.emit({
+      produtoId: this.produto().id,
+      quantidade: this.quantidade()
+    })
   }
 }

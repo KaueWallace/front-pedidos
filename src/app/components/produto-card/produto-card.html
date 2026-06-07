@@ -33,7 +33,7 @@
     </div>
 
 
-    <button class="botao" (click)="openSnackBar(`${produto().nome} adicionado ao carrinho!`, 'Fechar')">
+    <button class="botao" (click)="comprarAgora();openSnackBar(`${produto().nome} adicionado ao carrinho!`, 'Fechar')">
         <mat-icon>shopping_cart</mat-icon>
         <p>
             Adicionar ao carrinho

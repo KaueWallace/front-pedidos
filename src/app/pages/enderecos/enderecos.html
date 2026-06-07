@@ -1,0 +1,54 @@
+<section class="texto">
+
+    <h1>
+        Meus Endereços
+    </h1>
+
+    <button
+        class="novo-endereco"
+        routerLink="/enderecos/novo">
+
+        <mat-icon>
+            add_location
+        </mat-icon>
+
+        Novo Endereço
+
+    </button>
+
+</section>
+
+@if (enderecos().length === 0) {
+
+    <div class="empty-state">
+
+        <mat-icon class="empty-icon">
+            location_off
+        </mat-icon>
+
+        <h2>
+            Nenhum endereço cadastrado
+        </h2>
+
+        <p>
+            Adicione um endereço para realizar compras.
+        </p>
+
+    </div>
+
+} @else {
+
+    <div class="grid">
+
+        @for (endereco of enderecos(); track endereco.id) {
+
+            <app-endereco-card
+                [endereco]="endereco"
+                (excluir)="excluirEndereco($event)">
+            </app-endereco-card>
+
+        }
+
+    </div>
+
+}

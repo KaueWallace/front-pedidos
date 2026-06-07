@@ -1,0 +1,117 @@
+.card {
+    background: white;
+
+    border-radius: 20px;
+
+    padding: 24px;
+
+    box-shadow:
+        0 4px 20px rgba(124, 115, 192, .08);
+
+    transition:
+        transform .2s ease,
+        box-shadow .2s ease;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 12px 30px rgba(124, 115, 192, .15);
+}
+
+.localizacao {
+    display: flex;
+
+    gap: 12px;
+
+    align-items: center;
+}
+
+.localizacao mat-icon {
+    color: var(--primary);
+
+    width: 28px;
+    height: 28px;
+
+    font-size: 28px;
+}
+
+.localizacao h3 {
+    margin: 0;
+
+    color: var(--text-primary);
+}
+
+.localizacao p {
+    margin: 0;
+
+    color: #777;
+}
+
+.informacoes {
+    margin-top: 24px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 12px;
+}
+
+.linha {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+}
+
+.label {
+    font-weight: 600;
+
+    color: #777;
+}
+
+.acoes {
+    display: flex;
+
+    gap: 12px;
+
+    margin-top: 24px;
+}
+
+.editar,
+.excluir {
+    flex: 1;
+
+    height: 42px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    cursor: pointer;
+
+    font-weight: 600;
+}
+
+.editar {
+    background: var(--primary);
+
+    color: white;
+}
+
+.excluir {
+    background: rgba(239, 68, 68, .12);
+
+    color: var(--error);
+}

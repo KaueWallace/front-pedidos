@@ -1,0 +1,115 @@
+:host {
+    display: block;
+
+    padding: 8px;
+}
+
+h2 {
+    margin: 0 0 24px 0;
+
+    color: var(--text-primary);
+
+    font-size: 1.5rem;
+
+    font-weight: 700;
+}
+
+.enderecos {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 12px;
+
+    margin-bottom: 24px;
+
+    max-height: 400px;
+
+    overflow-y: auto;
+}
+
+.endereco {
+    width: 100%;
+
+    border: 2px solid transparent;
+
+    border-radius: 16px;
+
+    padding: 16px;
+
+    background: #f8f9fa;
+
+    cursor: pointer;
+
+    text-align: left;
+
+    transition: .2s ease;
+}
+
+.endereco:hover {
+    border-color: var(--primary);
+
+    background: rgba(124, 115, 192, .08);
+}
+
+.endereco strong {
+    display: block;
+
+    color: var(--text-primary);
+
+    font-size: 1rem;
+
+    margin-bottom: 4px;
+}
+
+.endereco p {
+    margin: 0;
+
+    color: #777;
+}
+
+.acoes {
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 12px;
+}
+
+.acoes button {
+    border: none;
+
+    border-radius: 12px;
+
+    padding: 12px 20px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: .2s ease;
+}
+
+.acoes button:first-child {
+    background: rgba(124, 115, 192, .12);
+
+    color: var(--primary);
+}
+
+.acoes button:last-child {
+    background: var(--primary);
+
+    color: white;
+}
+
+.acoes button:hover {
+    filter: brightness(.95);
+}
+
+.selecionado {
+    border: 2px solid var(--primary) !important;
+
+    background:
+        rgba(124, 115, 192, .12) !important;
+
+}

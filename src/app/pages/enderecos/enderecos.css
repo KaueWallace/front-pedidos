@@ -1,0 +1,115 @@
+:host {
+    display: block;
+
+    min-height: 100vh;
+
+    padding: 32px;
+
+    background: linear-gradient(
+        135deg,
+        #F3FFF0,
+        #EAF8FF
+    );
+}
+
+.texto {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 32px;
+}
+
+h1 {
+    margin: 0;
+
+    color: var(--text-primary);
+
+    font-size: 2rem;
+
+    font-weight: 700;
+}
+
+.novo-endereco {
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    padding: 12px 24px;
+
+    background: var(--primary);
+
+    color: white;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: .2s ease;
+}
+
+.novo-endereco:hover {
+    filter: brightness(.95);
+}
+
+.empty-state {
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+
+    min-height: 60vh;
+}
+
+.empty-icon {
+    width: 72px;
+    height: 72px;
+
+    font-size: 72px;
+
+    color: var(--primary);
+
+    opacity: .7;
+
+    margin-bottom: 16px;
+}
+
+.empty-state h2 {
+    margin: 0;
+
+    color: var(--text-primary);
+
+    font-size: 2rem;
+
+    font-weight: 700;
+}
+
+.empty-state p {
+    margin-top: 8px;
+
+    color: #777;
+
+    font-size: 1rem;
+}
+
+.grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fill, minmax(350px, 1fr));
+
+    gap: 24px;
+}
