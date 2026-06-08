@@ -144,3 +144,32 @@ nav a:hover {
 
     border-radius: 999px;
 }
+
+.admin-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 10px 16px;
+
+    border-radius: 12px;
+
+    text-decoration: none;
+
+    background: var(--primary);
+
+    color: white;
+
+    font-weight: 600;
+
+    transition: .2s ease;
+}
+
+.admin-link:hover {
+    filter: brightness(.95);
+}
+
+.admin-link.ativo {
+    box-shadow:
+        0 4px 16px rgba(124, 115, 192, .25);
+}

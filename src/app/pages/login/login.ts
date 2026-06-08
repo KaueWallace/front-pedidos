@@ -49,6 +49,11 @@ export class Login {
         this.authService.salvarToken(
           resposta.token
         );
+
+        this.authService.salvarRole(
+          resposta.role
+        )
+
         this.router.navigate(['/produtos'])
         console.log("Login realizado com sucesso!")
       },

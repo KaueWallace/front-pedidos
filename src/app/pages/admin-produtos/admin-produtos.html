@@ -1,0 +1,104 @@
+<div class="header">
+
+    <h1>
+        Gerenciar Produtos
+    </h1>
+
+    <a
+        routerLink="/admin/produtos/novo"
+        class="btn-novo">
+
+        <mat-icon>
+            add
+        </mat-icon>
+
+        Novo Produto
+
+    </a>
+
+</div>
+
+@if (produtos().length === 0) {
+
+<div class="empty-state">
+
+    <mat-icon>
+        inventory_2
+    </mat-icon>
+
+    <h2>
+        Nenhum produto cadastrado
+    </h2>
+
+    <p>
+        Cadastre seu primeiro produto para começar as vendas.
+    </p>
+
+
+</div>
+
+} @else {
+
+<div class="grid">
+
+    @for (produto of produtos(); track produto.id) {
+
+    <div class="card">
+
+        <img
+            [src]="produto.imagem"
+            [alt]="produto.nome">
+
+        <h3 class="nome">
+            {{ produto.nome }}
+        </h3>
+
+        <p class="preco">
+            R$ {{ produto.preco }}
+        </p>
+
+        <p class="estoque">
+            Estoque:
+            <span>
+                {{ produto.estoque }} unidades
+            </span>
+        </p>
+
+        <div class="acoes">
+
+            <a
+                [routerLink]="[
+                    '/admin/produtos/editar',
+                    produto.id
+                ]"
+                class="btn-editar">
+
+                <mat-icon>
+                    edit
+                </mat-icon>
+
+                Editar
+
+            </a>
+
+            <button
+                class="btn-excluir"
+                (click)="excluirProduto(produto.id)">
+                
+                <mat-icon>
+                    delete
+                </mat-icon>
+
+                Excluir
+
+            </button>
+
+        </div>
+
+    </div>
+
+    }
+
+</div>
+
+}

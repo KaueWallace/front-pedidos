@@ -1,0 +1,158 @@
+:host {
+    display: block;
+
+    min-height: 88vh;
+
+    padding: 32px;
+
+    background: linear-gradient(
+        135deg,
+        #F3FFF0,
+        #EAF8FF
+    );
+}
+
+.container {
+    max-width: 1200px;
+
+    margin: 0 auto;
+}
+
+.titulo {
+    display: flex;
+
+    align-items: center;
+
+    gap: 16px;
+
+    margin-bottom: 40px;
+}
+
+.titulo mat-icon {
+    width: 60px;
+
+    height: 60px;
+
+    font-size: 60px;
+
+    color: var(--primary);
+}
+
+.titulo h1 {
+    margin: 0;
+
+    font-size: 2rem;
+
+    color: var(--text-primary);
+}
+
+.titulo p {
+    margin-top: 6px;
+
+    color: #777;
+}
+
+.grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(350px, 1fr));
+
+    gap: 24px;
+}
+
+.card {
+    background: white;
+
+    padding: 32px;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 4px 20px rgba(124, 115, 192, .08);
+
+    transition:
+        transform .2s ease,
+        box-shadow .2s ease;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 12px 30px rgba(124, 115, 192, .15);
+}
+
+.card mat-icon {
+    width: 48px;
+
+    height: 48px;
+
+    font-size: 48px;
+
+    color: var(--primary);
+
+    margin-bottom: 16px;
+}
+
+.card h2 {
+    margin: 0 0 12px;
+
+    color: var(--text-primary);
+}
+
+.card p {
+    margin: 0;
+
+    color: #777;
+
+    line-height: 1.5;
+}
+
+.acoes {
+    display: flex;
+
+    gap: 12px;
+
+    margin-top: 24px;
+
+    flex-wrap: wrap;
+}
+
+.btn-admin {
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 10px 18px;
+
+    border-radius: 12px;
+
+    text-decoration: none;
+
+    background: var(--primary);
+
+    color: white;
+
+    font-weight: 600;
+
+    transition: .2s ease;
+}
+
+.btn-admin:hover {
+    filter: brightness(.95);
+}
+
+.btn-secundario {
+    background: white;
+
+    color: var(--primary);
+
+    border: 2px solid var(--primary);
+}
+
+.btn-secundario:hover {
+    background: rgba(124, 115, 192, .08);
+}

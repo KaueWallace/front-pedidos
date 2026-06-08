@@ -25,12 +25,26 @@ export class AuthService {
     localStorage.setItem('token', token)
   }
 
+  salvarRole(role: string){
+    localStorage.setItem('role', role)
+  }
+
   obterToken(): string | null {
     return localStorage.getItem('token');
   }
 
+  getRole(): string | null {
+    return localStorage.getItem('role');
+
+  }
+
+  isAdmin(): boolean {
+    return this.getRole() === 'ADMIN';
+  }
+
   logout(): void {
     localStorage.removeItem('token');
+    localStorage.removeItem('role');
     this.router.navigate(['/login'])
   }
 

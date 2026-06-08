@@ -40,3 +40,41 @@
 
     justify-content: space-around;
 }
+
+.empty-state {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    margin-top: 80px;
+
+    padding: 40px;
+}
+
+.empty-state mat-icon {
+    width: 80px;
+
+    height: 80px;
+
+    font-size: 80px;
+
+    color: var(--primary);
+
+    opacity: .7;
+}
+
+.empty-state h2 {
+    margin-top: 24px;
+
+    color: var(--text-primary);
+}
+
+.empty-state p {
+    color: #777;
+}

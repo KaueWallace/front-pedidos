@@ -1,0 +1,53 @@
+:host {
+    display: block;
+
+    height: 90vh;
+
+    padding: 25px;
+
+    background: linear-gradient(
+        135deg,
+        #F3FFF0,
+        #EAF8FF
+    );
+}
+
+.container {
+    display: flex;
+
+    justify-content: center;
+}
+
+.card {
+    width: 100%;
+    max-width: 700px;
+
+    background: white;
+
+    border-radius: 20px;
+
+    padding: 32px;
+
+    box-shadow:
+        0 4px 20px rgba(124, 115, 192, .08);
+}
+
+h1 {
+    margin-top: 0;
+
+    margin-bottom: 24px;
+
+    color: var(--text-primary);
+}
+
+form {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 16px;
+}
+
+button {
+    margin-top: 8px;
+}

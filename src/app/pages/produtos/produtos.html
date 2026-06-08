@@ -1,19 +1,46 @@
 <section class="produtos">
+
     <h1 class="titulo">
         Produtos
     </h1>
 
+    @if (produtos().length === 0) {
+
+    <div class="empty-state">
+
+        <mat-icon>
+            inventory_2
+        </mat-icon>
+
+        <h2>
+            Nenhum produto cadastrado
+        </h2>
+
+        <p>
+            Não há produtos disponíveis no momento.
+        </p>
+
+    </div>
+
+    } @else {
+
     <section class="cards">
+
         <div class="grid">
 
             @for (produto of produtos(); track produto.id) {
 
-            <app-produto-card [produto]="produto", (addCarrinho)="adicionarAoCarrinho($event)">
+            <app-produto-card
+                [produto]="produto"
+                (addCarrinho)="adicionarAoCarrinho($event)">
             </app-produto-card>
 
             }
 
         </div>
+
     </section>
+
+    }
 
 </section>

@@ -6,10 +6,11 @@ import { ProdutoCard } from '../../components/produto-card/produto-card';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { CarrinhoService } from '../../services/carrinhoService/carrinho.service';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-produtos',
-  imports: [ProdutoCard],
+  imports: [ProdutoCard, MatIconModule],
   templateUrl: './produtos.html',
   styleUrl: './produtos.css',
 })

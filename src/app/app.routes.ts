@@ -8,6 +8,10 @@ import { Enderecos } from './pages/enderecos/enderecos';
 import { CadastrarEndereco } from './pages/cadastrar-endereco/cadastrar-endereco';
 import { EditarEndereco } from './pages/editar-endereco/editar-endereco';
 import { CarrinhoPage } from './pages/carrinho/carrinho';
+import { CadastrarProduto } from './pages/cadastrar-produto/cadastrar-produto';
+import { AdminDashboard } from './pages/admin-dashboard/admin-dashboard';
+import { AdminProdutos } from './pages/admin-produtos/admin-produtos';
+import { EditarProduto } from './pages/editar-produto/editar-produto';
 
 export const routes: Routes = [
     {
@@ -52,6 +56,22 @@ export const routes: Routes = [
             {
                 path: 'carrinho',
                 component: CarrinhoPage
+            },
+            {
+                path: 'admin/produtos/novo',
+                component: CadastrarProduto
+            },
+            {
+                path: 'admin',
+                component: AdminDashboard
+            },
+            {
+                path: 'admin/produtos',
+                component: AdminProdutos
+            },
+            {
+                path: 'admin/produtos/editar/:id',
+                component: EditarProduto
             }
         ]
     }

@@ -24,9 +24,27 @@
             Endereços
         </a>
 
-    </nav>
+        @if (authService.isAdmin()) {
+
+        <a class="nav-link" routerLink="/admin" routerLinkActive="ativo">
+
+            <mat-icon>
+                admin_panel_settings
+            </mat-icon>
+
+            Administração
+
+        </a>
+
+        }
+
+     </nav>
+
+     
+
 
     <div class="acoes">
+        
 
         <button class="carrinho" routerLink="/carrinho">
 
@@ -48,65 +66,59 @@
         </button>
         <mat-menu #menuUsuario="matMenu">
 
-    <button
-        mat-menu-item
-        routerLink="/meus-pedidos">
+            <button mat-menu-item routerLink="/meus-pedidos">
 
-        <mat-icon>
-            receipt_long
-        </mat-icon>
+                <mat-icon>
+                    receipt_long
+                </mat-icon>
 
-        <span>
-            Meus Pedidos
-        </span>
+                <span>
+                    Meus Pedidos
+                </span>
 
-    </button>
+            </button>
 
-    <button
-        mat-menu-item
-        routerLink="/enderecos">
+            <button mat-menu-item routerLink="/enderecos">
 
-        <mat-icon>
-            location_on
-        </mat-icon>
+                <mat-icon>
+                    location_on
+                </mat-icon>
 
-        <span>
-            Meus Endereços
-        </span>
+                <span>
+                    Meus Endereços
+                </span>
 
-    </button>
+            </button>
 
-    <button
-        mat-menu-item
-        routerLink="/carrinho">
 
-        <mat-icon>
-            shopping_cart
-        </mat-icon>
+            <button mat-menu-item routerLink="/carrinho">
 
-        <span>
-            Carrinho
-        </span>
+                <mat-icon>
+                    shopping_cart
+                </mat-icon>
 
-    </button>
+                <span>
+                    Carrinho
+                </span>
 
-    <mat-divider></mat-divider>
+            </button>
 
-    <button
-        mat-menu-item
-        (click)="authService.logout()">
 
-        <mat-icon>
-            logout
-        </mat-icon>
+            <mat-divider></mat-divider>
 
-        <span>
-            Sair
-        </span>
+            <button mat-menu-item (click)="authService.logout()">
 
-    </button>
+                <mat-icon>
+                    logout
+                </mat-icon>
 
-</mat-menu>
+                <span>
+                    Sair
+                </span>
+
+            </button>
+
+        </mat-menu>
     </div>
 
 </header>
