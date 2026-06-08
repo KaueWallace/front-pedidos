@@ -33,13 +33,13 @@ export class CarrinhoPage implements OnInit {
   );
 
   private router = inject(Router)
-  
-    private pedidoService = inject(PedidoService);
-  
-    private enderecoService = inject(EnderecoService);
-  
-    private dialog = inject(MatDialog);
-  
+
+  private pedidoService = inject(PedidoService);
+
+  private enderecoService = inject(EnderecoService);
+
+  private dialog = inject(MatDialog);
+
 
   carrinho = signal<Carrinho | null>(
     null
@@ -161,7 +161,8 @@ export class CarrinhoPage implements OnInit {
               'Cadastre um endereço antes de finalizar a compra.',
               'Cadastrar',
               {
-                duration: 5000
+                duration: 500,
+                panelClass: ['success-snackbar']
               }
             );
 
@@ -193,6 +194,14 @@ export class CarrinhoPage implements OnInit {
             .subscribe(enderecoId => {
 
               if (!enderecoId) {
+                this.snackBar.open(
+                  'Selecione um endereço antes de finalizar a compra.',
+                  'Ok',
+                  {
+                    duration: 4000,
+                    panelClass: ['success-snackbar']
+                  }
+                );
                 return;
               }
 
