@@ -3,12 +3,14 @@ import { inject, Injectable } from '@angular/core';
 import { LoginRequest } from '../../models/login/loginRequest';
 import { Observable } from 'rxjs';
 import { LoginResponse } from '../../models/login/loginResponse';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   private http = inject(HttpClient);
+  private router = inject(Router);
 
   private api = 'http://localhost:8080/auth';
 
@@ -29,6 +31,7 @@ export class AuthService {
 
   logout(): void {
     localStorage.removeItem('token');
+    this.router.navigate(['/login'])
   }
 
   estaLogado(): boolean {

@@ -1,1 +1,29 @@
-<p>confirm-dialog works!</p>
+<h2 mat-dialog-title>
+    Confirmar ação
+</h2>
+
+<mat-dialog-content>
+
+    {{ data.mensagem }}
+
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+
+    <button
+        mat-button
+        (click)="dialogRef.close(false)">
+
+        Não
+
+    </button>
+
+    <button
+        mat-flat-button
+        (click)="dialogRef.close(true)">
+
+        Sim
+
+    </button>
+
+</mat-dialog-actions>

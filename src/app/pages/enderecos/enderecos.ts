@@ -6,6 +6,8 @@ import { EnderecoCard } from '../../components/endereco-card/endereco-card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { RouterLink } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmDialog } from '../../components/dialogs/confirm-dialog/confirm-dialog';
 
 
 @Component({
@@ -13,7 +15,8 @@ import { RouterLink } from '@angular/router';
   imports: [
     EnderecoCard,
     MatIconModule,
-    RouterLink
+    RouterLink,
+    ConfirmDialog
   ],
   templateUrl: './enderecos.html',
   styleUrl: './enderecos.css',
@@ -27,6 +30,8 @@ export class Enderecos implements OnInit {
   enderecos = signal<Endereco[]>([]);
 
   private _snackBar = inject(MatSnackBar);
+
+  private dialog = inject(MatDialog);
 
   ngOnInit(): void {
 
@@ -46,34 +51,69 @@ export class Enderecos implements OnInit {
 
   excluirEndereco(id: number) {
 
-    this.enderecoService
-      .excluir(id)
-      .subscribe({
-        next: () => {
+  const dialogRef = this.dialog.open(
+    ConfirmDialog,
+    {
+      width: '420px',
+      data: {
+        mensagem:
+          'Deseja realmente excluir este endereço?'
+      }
+    }
+  );
 
-          this.enderecos.update(
-            enderecos =>
-              enderecos.filter(
-                endereco => endereco.id !== id
-              )
-          );
+  dialogRef
+    .afterClosed()
+    .subscribe(confirmado => {
 
-          this.snackBar.open(
-            'Endereço removido com sucesso',
-            'Fechar',
-            {
-              duration: 3000
-            }
-          );
+      if (!confirmado) {
+        return;
+      }
 
-        },
-        error: (error) => {
-          this.openSnackBar(error.error.message, 'Fechar');
-           console.error(error)
-        }
-      });
+      this.enderecoService
+        .excluir(id)
+        .subscribe({
 
-  }
+          next: () => {
+
+            this.snackBar.open(
+              'Endereço removido com sucesso',
+              'Fechar',
+              {
+                duration: 3000,
+                panelClass: [
+                  'success-snackbar'
+                ]
+              }
+            );
+
+            this.enderecos.update(
+              enderecos =>
+                enderecos.filter(
+                  e => e.id !== id
+                )
+            );
+
+          },
+
+          error: (erro: any) => {
+
+            this.snackBar.open(
+              erro.error?.message ??
+              'Erro ao remover endereço',
+              'Fechar',
+              {
+                duration: 4000
+              }
+            );
+
+          }
+
+        });
+
+    });
+
+}
 
 
 }

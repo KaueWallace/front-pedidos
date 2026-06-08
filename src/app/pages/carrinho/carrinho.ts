@@ -161,7 +161,7 @@ export class CarrinhoPage implements OnInit {
               'Cadastre um endereço antes de finalizar a compra.',
               'Cadastrar',
               {
-                duration: 500,
+                duration: 5000,
                 panelClass: ['success-snackbar']
               }
             );

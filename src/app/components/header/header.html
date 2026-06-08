@@ -40,14 +40,73 @@
 
         </button>
 
-        <button class="usuario">
+        <button class="usuario" [matMenuTriggerFor]="menuUsuario">
 
             <mat-icon>
                 account_circle
             </mat-icon>
-
         </button>
+        <mat-menu #menuUsuario="matMenu">
 
+    <button
+        mat-menu-item
+        routerLink="/meus-pedidos">
+
+        <mat-icon>
+            receipt_long
+        </mat-icon>
+
+        <span>
+            Meus Pedidos
+        </span>
+
+    </button>
+
+    <button
+        mat-menu-item
+        routerLink="/enderecos">
+
+        <mat-icon>
+            location_on
+        </mat-icon>
+
+        <span>
+            Meus Endereços
+        </span>
+
+    </button>
+
+    <button
+        mat-menu-item
+        routerLink="/carrinho">
+
+        <mat-icon>
+            shopping_cart
+        </mat-icon>
+
+        <span>
+            Carrinho
+        </span>
+
+    </button>
+
+    <mat-divider></mat-divider>
+
+    <button
+        mat-menu-item
+        (click)="authService.logout()">
+
+        <mat-icon>
+            logout
+        </mat-icon>
+
+        <span>
+            Sair
+        </span>
+
+    </button>
+
+</mat-menu>
     </div>
 
 </header>
