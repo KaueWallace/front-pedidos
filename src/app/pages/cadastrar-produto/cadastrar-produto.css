@@ -1,7 +1,7 @@
 :host {
     display: block;
 
-    height: 90vh;
+    min-height: 90vh;
 
     padding: 25px;
 
@@ -14,8 +14,15 @@
 
 .container {
     display: flex;
-
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.voltar {
+    align-self: flex-start;
 }
 
 .card {
@@ -51,3 +58,28 @@ form {
 button {
     margin-top: 8px;
 }
+
+.voltar {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    margin-bottom: 7px;
+
+    border: none;
+
+    background: transparent;
+
+    color: var(--primary);
+
+    font-size: 1rem;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    text-decoration: none;
+}
+

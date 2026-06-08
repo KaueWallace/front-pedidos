@@ -13,7 +13,8 @@ import {
 
 import {
   ActivatedRoute,
-  Router
+  Router,
+  RouterLink
 } from '@angular/router';
 
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -23,6 +24,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 
 import { ProdutoService } from '../../services/produtoService/produto.service';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-editar-produto',
@@ -31,7 +33,9 @@ import { ProdutoService } from '../../services/produtoService/produto.service';
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    MatIconModule,
+    RouterLink
   ],
 
   templateUrl: './editar-produto.html',

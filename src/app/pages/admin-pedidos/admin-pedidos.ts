@@ -21,6 +21,7 @@ import {
 import { PedidoService } from '../../services/pedidoService/pedido.service';
 import { Pedido } from '../../models/pedidos/pedido';
 import { DatePipe } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-admin-pedidos',
@@ -29,7 +30,8 @@ import { DatePipe } from '@angular/common';
     MatIconModule,
     MatFormFieldModule,
     MatSelectModule,
-    DatePipe
+    DatePipe,
+    RouterLink
   ],
 
   templateUrl: './admin-pedidos.html',
@@ -47,6 +49,8 @@ export class AdminPedidos
 
   pedidos =
     signal<Pedido[]>([]);
+
+  statusSelecionado = signal('TODOS');
 
   ngOnInit(): void {
 
@@ -115,12 +119,16 @@ export class AdminPedidos
 
                 pedido.id === pedidoId
                   ? {
-                      ...pedido,
-                      status
-                    }
+                    ...pedido,
+                    status
+                  }
                   : pedido
 
               )
+          );
+
+          this.filtrar(
+            this.statusSelecionado()
           );
 
         },
@@ -135,6 +143,33 @@ export class AdminPedidos
               duration: 4000
             }
           );
+
+        }
+
+      });
+
+  }
+
+
+  filtrar(status: string) {
+
+    this.statusSelecionado.set(
+      status
+    );
+
+    this.pedidoService
+      .listarTodosPedidos(
+        status
+      )
+      .subscribe({
+
+        next: pedidos => {
+
+          this.pedidos.set(
+            pedidos
+          );
+
+
 
         }
 

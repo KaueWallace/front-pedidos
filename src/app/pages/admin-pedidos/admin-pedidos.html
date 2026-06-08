@@ -1,8 +1,51 @@
+<button
+    class="voltar"
+    routerLink="/admin">
+
+    <mat-icon>
+        arrow_back
+    </mat-icon>
+
+    Voltar para administração
+
+</button>
 <div class="header">
 
     <h1>
         Gerenciar Pedidos
     </h1>
+
+    <mat-form-field appearance="outline">
+
+        <mat-label>
+            Filtrar por status
+        </mat-label>
+
+        <mat-select [value]="statusSelecionado()" (selectionChange)="filtrar($event.value)">
+
+            <mat-option value="TODOS">
+                Todos
+            </mat-option>
+
+            <mat-option value="PENDENTE">
+                Pendente
+            </mat-option>
+
+            <mat-option value="ENVIADO">
+                Enviado
+            </mat-option>
+
+            <mat-option value="ENTREGUE">
+                Entregue
+            </mat-option>
+
+            <mat-option value="CANCELADO">
+                Cancelado
+            </mat-option>
+
+        </mat-select>
+
+    </mat-form-field>
 
 </div>
 
@@ -17,6 +60,10 @@
     <h2>
         Nenhum pedido encontrado
     </h2>
+
+    <p>
+        Não existem pedidos para o filtro selecionado.
+    </p>
 
 </div>
 
@@ -34,11 +81,8 @@
                 Pedido #{{ pedido.id }}
             </h3>
 
-            <span
-                class="status"
-                [class.pendente]="pedido.status === 'PENDENTE'"
-                [class.enviado]="pedido.status === 'ENVIADO'"
-                [class.entregue]="pedido.status === 'ENTREGUE'"
+            <span class="status" [class.pendente]="pedido.status === 'PENDENTE'"
+                [class.enviado]="pedido.status === 'ENVIADO'" [class.entregue]="pedido.status === 'ENTREGUE'"
                 [class.cancelado]="pedido.status === 'CANCELADO'">
 
                 {{ pedido.status }}
@@ -62,12 +106,10 @@
         <mat-form-field appearance="outline">
 
             <mat-label>
-                Alterar Status
+                Alterar status
             </mat-label>
 
-            <mat-select
-                [value]="pedido.status"
-                (selectionChange)="
+            <mat-select [value]="pedido.status" (selectionChange)="
                     alterarStatus(
                         pedido.id,
                         $event.value
@@ -94,6 +136,18 @@
 
         </mat-form-field>
 
+        <div class="acoes">
+
+            <button class="detalhes" [routerLink]="[
+            '/admin/pedidos',
+            pedido.id
+        ]">
+
+                Ver detalhes
+
+            </button>
+
+        </div>
     </div>
 
     }

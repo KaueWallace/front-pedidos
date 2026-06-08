@@ -133,4 +133,20 @@ export class AdminProdutos
 
   }
 
+  corEstoque(produto: Produto): string {
+
+    const estoque = produto.estoque;
+
+    if (estoque >= 10) {
+      return 'var(--success)';
+    }
+
+    if (estoque >= 5) {
+      return 'var(--warning)';
+    }
+
+    return 'var(--error)';
+  }
+  
+
 }

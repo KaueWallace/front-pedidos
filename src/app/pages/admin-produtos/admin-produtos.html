@@ -1,3 +1,14 @@
+<button
+    class="voltar"
+    routerLink="/admin">
+
+    <mat-icon>
+        arrow_back
+    </mat-icon>
+
+    Voltar para administração
+
+</button>
 <div class="header">
 
     <h1>
@@ -58,10 +69,7 @@
         </p>
 
         <p class="estoque">
-            Estoque:
-            <span>
-                {{ produto.estoque }} unidades
-            </span>
+            Estoque: <span [style.color]="corEstoque(produto)">{{ produto.estoque }} unidades</span>
         </p>
 
         <div class="acoes">

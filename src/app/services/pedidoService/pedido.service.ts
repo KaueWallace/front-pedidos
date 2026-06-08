@@ -10,13 +10,27 @@ export class PedidoService {
   private http = inject(HttpClient);
   private api = `http://localhost:8080`;
 
-  listarTodosPedidos() {
+  listarTodosPedidos(status?: string) {
 
-  return this.http.get<Pedido[]>(
-    `${this.api}/pedidos`
-  );
+    let params = {};
 
-}
+    if (status &&
+      status !== 'TODOS') {
+
+      params = {
+        status
+      };
+
+    }
+
+    return this.http.get<Pedido[]>(
+      `${this.api}/pedidos`,
+      {
+        params
+      }
+    );
+
+  }
 
   listarMeusPedidos(status?: string) {
 
@@ -40,7 +54,12 @@ export class PedidoService {
     );
   }
 
-  
+  buscarPorId(id: number){
+    return this.http.get<Pedido>(
+      `${this.api}/pedidos/${id}`
+    )
+  }
+
 
   salvar(dto: PedidoRequest) {
     return this.http.post(

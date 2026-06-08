@@ -2,9 +2,9 @@
 
 <div class="container">
 
-    <button
-        class="voltar"
-        routerLink="/meus-pedidos">
+
+    @if(!veioDoAdmin){
+    <button class="voltar" routerLink="/meus-pedidos">
 
         <mat-icon>
             arrow_back
@@ -13,6 +13,18 @@
         Voltar para meus pedidos
 
     </button>
+    } @else {
+    <button class="voltar" routerLink="/admin/pedidos">
+
+        <mat-icon>
+            arrow_back
+        </mat-icon>
+
+        Voltar para gerenciar pedidos
+
+    </button>
+    }
+
     <div class="header">
 
         <div>
@@ -70,7 +82,7 @@
                     </p>
 
                     <strong>
-                        Subtotal: 
+                        Subtotal:
                         R$ {{ item.subTotal }}
                     </strong>
 

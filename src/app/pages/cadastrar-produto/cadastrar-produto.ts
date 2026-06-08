@@ -7,7 +7,7 @@ import {
   Validators
 } from '@angular/forms';
 
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -18,6 +18,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 
 import { MatButton, MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-cadastrar-produto',
@@ -27,7 +28,9 @@ import { MatButton, MatButtonModule } from '@angular/material/button';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    MatButton
+    MatButton,
+    MatIconModule,
+    RouterLink
   ],
 
   templateUrl: './cadastrar-produto.html',

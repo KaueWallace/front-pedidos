@@ -77,7 +77,12 @@ export const routes: Routes = [
             {
                 path: 'admin/pedidos',
                 component: AdminPedidos
+            },
+            {
+                path: 'admin/pedidos/:id',
+                component: DetalhePedido
             }
+            
         ]
     }
 
