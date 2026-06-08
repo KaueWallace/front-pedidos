@@ -3,10 +3,11 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { PedidoService } from '../../services/pedidoService/pedido.service';
 import { Pedido } from '../../models/pedidos/pedido';
 import { MatIconModule } from '@angular/material/icon';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-detalhe-pedido',
-  imports: [RouterLink, MatIconModule],
+  imports: [RouterLink, MatIconModule, DatePipe],
   templateUrl: './detalhe-pedido.html',
   styleUrl: './detalhe-pedido.css',
 })

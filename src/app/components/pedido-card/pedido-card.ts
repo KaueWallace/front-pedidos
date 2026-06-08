@@ -1,10 +1,11 @@
 import { Component, input, output } from '@angular/core';
 import { Pedido } from '../../models/pedidos/pedido';
 import { RouterLink } from '@angular/router';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-pedido-card',
-  imports: [RouterLink],
+  imports: [RouterLink, DatePipe],
   templateUrl: './pedido-card.html',
   styleUrl: './pedido-card.css',
 })

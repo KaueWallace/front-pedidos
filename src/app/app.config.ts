@@ -5,6 +5,12 @@ import { provideHttpClient, withInterceptors } from '@angular/common/http';
 
 import { routes } from './app.routes';
 import { authInterceptor } from './interceptors/auth-interceptor';
+import { LOCALE_ID } from '@angular/core';
+import { registerLocaleData } from '@angular/common';
+import localePt from '@angular/common/locales/pt';
+
+
+registerLocaleData(localePt);
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -14,6 +20,9 @@ export const appConfig: ApplicationConfig = {
       withInterceptors(
         [authInterceptor]
       )
-    )
+    ),{
+      provide: LOCALE_ID,
+      useValue: 'pt-BR'
+    }
   ]
 };

@@ -20,7 +20,7 @@
     </div>
 
     <p class="data">
-        {{ pedido().dataPedido }}
+        {{ pedido().dataPedido |  date:'dd/MM/yyyy HH:mm' }}
     </p>
 
     <p class="itens">
