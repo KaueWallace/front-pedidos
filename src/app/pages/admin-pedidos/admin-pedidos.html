@@ -1,0 +1,103 @@
+<div class="header">
+
+    <h1>
+        Gerenciar Pedidos
+    </h1>
+
+</div>
+
+@if (pedidos().length === 0) {
+
+<div class="empty-state">
+
+    <mat-icon>
+        receipt_long
+    </mat-icon>
+
+    <h2>
+        Nenhum pedido encontrado
+    </h2>
+
+</div>
+
+} @else {
+
+<div class="grid">
+
+    @for (pedido of pedidos(); track pedido.id) {
+
+    <div class="card">
+
+        <div class="topo">
+
+            <h3>
+                Pedido #{{ pedido.id }}
+            </h3>
+
+            <span
+                class="status"
+                [class.pendente]="pedido.status === 'PENDENTE'"
+                [class.enviado]="pedido.status === 'ENVIADO'"
+                [class.entregue]="pedido.status === 'ENTREGUE'"
+                [class.cancelado]="pedido.status === 'CANCELADO'">
+
+                {{ pedido.status }}
+
+            </span>
+
+        </div>
+
+        <p class="data">
+            {{ pedido.dataPedido | date:'dd/MM/yyyy HH:mm' }}
+        </p>
+
+        <p class="itens">
+            {{ pedido.itens.length }} item(s)
+        </p>
+
+        <p class="valor">
+            R$ {{ pedido.valorTotal }}
+        </p>
+
+        <mat-form-field appearance="outline">
+
+            <mat-label>
+                Alterar Status
+            </mat-label>
+
+            <mat-select
+                [value]="pedido.status"
+                (selectionChange)="
+                    alterarStatus(
+                        pedido.id,
+                        $event.value
+                    )
+                ">
+
+                <mat-option value="PENDENTE">
+                    Pendente
+                </mat-option>
+
+                <mat-option value="ENVIADO">
+                    Enviado
+                </mat-option>
+
+                <mat-option value="ENTREGUE">
+                    Entregue
+                </mat-option>
+
+                <mat-option value="CANCELADO">
+                    Cancelado
+                </mat-option>
+
+            </mat-select>
+
+        </mat-form-field>
+
+    </div>
+
+    }
+
+</div>
+
+}

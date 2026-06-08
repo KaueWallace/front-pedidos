@@ -10,6 +10,14 @@ export class PedidoService {
   private http = inject(HttpClient);
   private api = `http://localhost:8080`;
 
+  listarTodosPedidos() {
+
+  return this.http.get<Pedido[]>(
+    `${this.api}/pedidos`
+  );
+
+}
+
   listarMeusPedidos(status?: string) {
 
     if (status) {
@@ -32,10 +40,21 @@ export class PedidoService {
     );
   }
 
+  
+
   salvar(dto: PedidoRequest) {
     return this.http.post(
       `${this.api}/pedidos`,
       dto
+    );
+  }
+
+  atualizarStatus(id: number, status: string) {
+    return this.http.patch(
+      `${this.api}/pedidos/${id}/status`,
+      {
+        status
+      }
     );
   }
 

@@ -12,6 +12,7 @@ import { CadastrarProduto } from './pages/cadastrar-produto/cadastrar-produto';
 import { AdminDashboard } from './pages/admin-dashboard/admin-dashboard';
 import { AdminProdutos } from './pages/admin-produtos/admin-produtos';
 import { EditarProduto } from './pages/editar-produto/editar-produto';
+import { AdminPedidos } from './pages/admin-pedidos/admin-pedidos';
 
 export const routes: Routes = [
     {
@@ -72,6 +73,10 @@ export const routes: Routes = [
             {
                 path: 'admin/produtos/editar/:id',
                 component: EditarProduto
+            },
+            {
+                path: 'admin/pedidos',
+                component: AdminPedidos
             }
         ]
     }
