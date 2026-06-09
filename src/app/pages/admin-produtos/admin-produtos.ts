@@ -174,10 +174,10 @@ export class AdminProdutos
       .buscar(nome)
       .subscribe({
 
-        next: produtos => {
+        next: page => {
 
           this.produtos.set(
-            produtos
+            page.content
           );
 
         }

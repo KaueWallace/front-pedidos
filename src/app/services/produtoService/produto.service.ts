@@ -40,13 +40,15 @@ export class ProdutoService {
 
   }
 
-  buscar(nome: string) {
+  buscar(nome: string, page = 0, size = 3) {
 
-    return this.http.get<Produto[]>(
+    return this.http.get<Page<Produto>>(
       `${this.api}/buscar`,
       {
         params: {
-          nome
+          nome,
+          page,
+          size
         }
       }
     );

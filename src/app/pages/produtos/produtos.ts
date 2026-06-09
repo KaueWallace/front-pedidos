@@ -123,6 +123,8 @@ export class Produtos implements OnInit {
 
     if (!nome) {
 
+      this.paginaAtual = 0;
+
       this.carregarProdutos();
 
       return;
@@ -130,13 +132,21 @@ export class Produtos implements OnInit {
     }
 
     this.produtoService
-      .buscar(nome)
+      .buscar(
+        nome,
+        this.paginaAtual,
+        this.tamanhoPagina
+      )
       .subscribe({
 
-        next: produtos => {
+        next: page => {
 
           this.produtos.set(
-            produtos
+            page.content
+          );
+
+          this.totalItens.set(
+            page.totalElements
           );
 
         },
