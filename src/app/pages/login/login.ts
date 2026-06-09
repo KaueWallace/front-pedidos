@@ -7,7 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { AuthService } from '../../services/authService/auth.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +17,8 @@ import { Router } from '@angular/router';
     MatFormFieldModule, 
     MatInputModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    RouterLink
   ],
   templateUrl: './login.html',
   styleUrl: './login.css',

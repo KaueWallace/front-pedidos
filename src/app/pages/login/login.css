@@ -16,7 +16,8 @@
 
 .login-card {
     width: 100%;
-    max-width: 380px;
+    /* max-width: 380px; */
+    max-width: 450px;
 
     padding: 40px;
 
@@ -128,4 +129,14 @@ mat-label {
 
 input:hover {
     border-color: #7E72C9 !important;
+}
+
+.cadastrar-conta {
+    color: #7E72C9;
+    text-align: center;
+}
+
+.cadastrar-conta:hover {
+    text-decoration: underline;
+    cursor: pointer;
 }

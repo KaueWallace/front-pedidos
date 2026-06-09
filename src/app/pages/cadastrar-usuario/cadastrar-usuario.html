@@ -1,0 +1,133 @@
+<div class="register-container">
+
+    <div class="register-card">
+
+        <div class="header">
+
+            <h1 class="titulo">
+                Criar Conta
+            </h1>
+
+            <p>
+                Cadastre-se para começar a comprar.
+            </p>
+
+        </div>
+
+        <form
+            [formGroup]="form"
+            (ngSubmit)="cadastrar()">
+
+            <mat-form-field appearance="outline">
+
+                <mat-label>
+                    E-mail
+                </mat-label>
+
+                <input
+                    matInput
+                    type="email"
+                    formControlName="email">
+
+                <mat-icon matSuffix class="eye-button">
+                    email
+                </mat-icon>
+
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+
+                <mat-label>
+                    Nome
+                </mat-label>
+
+                <input
+                    matInput
+                    type="text"
+                    formControlName="nome">
+
+                <mat-icon matSuffix class="eye-button">
+                    nome
+                </mat-icon>
+
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+
+                <mat-label>
+                    Senha
+                </mat-label>
+
+                <input
+                    matInput
+                    [type]="mostrarSenha ? 'text' : 'password'"
+                    formControlName="senha">
+
+                <button 
+                    class="eye-button"
+                    mat-icon-button
+                    matSuffix
+                    type="button"
+                    (click)="mostrarSenha = !mostrarSenha">
+
+                    <mat-icon>
+                        {{ mostrarSenha ? 'visibility': 'visibility_off' }}
+                    </mat-icon>
+
+                </button>
+
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+
+                <mat-label>
+                    Confirmar Senha
+                </mat-label>
+
+                <input
+                    matInput
+                    [type]="mostrarConfirmacao ? 'text' : 'password'"
+                    formControlName="confirmarSenha">
+
+                <button
+                    class="eye-button"
+                    mat-icon-button
+                    matSuffix
+                    type="button"
+                    (click)="mostrarConfirmacao = !mostrarConfirmacao">
+
+                    <mat-icon>
+                        {{ mostrarConfirmacao ? 'visibility' : 'visibility_off' }}
+                    </mat-icon>
+
+                </button>
+
+            </mat-form-field>
+
+            <button
+                mat-raised-button
+                color="primary"
+                class="btn-cadastrar"
+                [disabled]="form.invalid">
+
+                Criar Conta
+
+            </button>
+
+        </form>
+
+        <div class="footer">
+
+            <span>
+                Já possui uma conta?
+            </span>
+
+            <a routerLink="/login">
+                Entrar
+            </a>
+
+        </div>
+
+    </div>
+
+</div>

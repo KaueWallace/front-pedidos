@@ -17,6 +17,7 @@ import { AdminPedidos } from './pages/admin-pedidos/admin-pedidos';
 
 import { authGuard } from './guards/auth-guard';
 import { adminGuard } from './guards/admin-guard';
+import { CadastrarUsuario } from './pages/cadastrar-usuario/cadastrar-usuario';
 
 export const routes: Routes = [
 
@@ -30,7 +31,10 @@ export const routes: Routes = [
         path: 'login',
         component: Login
     },
-
+    {
+        path: 'cadastrar',
+        component: CadastrarUsuario
+    },
     {
         path: '',
         component: MainLayout,
