@@ -12,10 +12,7 @@
                 Buscar produto
             </mat-label>
 
-            <input
-                matInput
-                [(ngModel)]="termoBusca"
-                (ngModelChange)="buscarProdutos()">
+            <input matInput [(ngModel)]="termoBusca" (ngModelChange)="buscarProdutos()">
 
             <mat-icon matSuffix>
                 search
@@ -66,9 +63,7 @@
 
             @for (produto of produtos(); track produto.id) {
 
-            <app-produto-card
-                [produto]="produto"
-                (addCarrinho)="adicionarAoCarrinho($event)">
+            <app-produto-card [produto]="produto" (addCarrinho)="adicionarAoCarrinho($event)">
             </app-produto-card>
 
             }
@@ -78,5 +73,16 @@
     </section>
 
     }
-
 </section>
+
+<div class="paginacao">
+
+    <mat-paginator
+        [length]="totalItens()"
+        [pageSize]="tamanhoPagina"
+        [pageSizeOptions]="[4, 8, 12, 16]"
+        showFirstLastButtons
+        (page)="mudarPagina($event)">
+    </mat-paginator>
+
+</div>

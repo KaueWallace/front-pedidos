@@ -67,3 +67,9 @@
 .success-snackbar .mat-mdc-snack-bar-label {
     color: white !important;
 }
+
+.mat-mdc-paginator-container {
+    background-color: white
+    ;
+    color: var(--text-primary);
+}

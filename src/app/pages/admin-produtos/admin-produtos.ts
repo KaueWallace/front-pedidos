@@ -65,10 +65,10 @@ export class AdminProdutos
       .listar()
       .subscribe({
 
-        next: produtos => {
+        next: page => {
 
           this.produtos.set(
-            produtos
+            page.content
           );
 
         }

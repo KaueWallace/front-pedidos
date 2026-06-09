@@ -12,9 +12,14 @@ import { MatFormField, MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 
+import {
+  PageEvent,
+  MatPaginatorModule
+} from '@angular/material/paginator';
+
 @Component({
   selector: 'app-produtos',
-  imports: [ProdutoCard, MatIconModule, FormsModule, MatFormFieldModule, MatButtonModule, MatInputModule],
+  imports: [ProdutoCard, MatIconModule, FormsModule, MatFormFieldModule, MatButtonModule, MatInputModule, MatPaginatorModule],
   templateUrl: './produtos.html',
   styleUrl: './produtos.css',
 })
@@ -28,17 +33,23 @@ export class Produtos implements OnInit {
 
   termoBusca = signal('');
 
+  totalItens = signal(0);
+
+  paginaAtual = 0;
+
+  tamanhoPagina = 3;
+
   produtos = signal<Produto[]>([]);
 
   ngOnInit(): void {
     this.carregarProdutos()
   }
 
-  carregarProdutos(){
-    this.produtoService.listar().subscribe({
-      next: (produtos) => {
-        this.produtos.set(produtos);
-        console.log(this.produtos)
+  carregarProdutos() {
+    this.produtoService.listar(this.paginaAtual, this.tamanhoPagina).subscribe({
+      next: (page) => {
+        this.produtos.set(page.content);
+        this.totalItens.set(page.totalElements)
       },
 
       error: (erro) => {
@@ -143,6 +154,28 @@ export class Produtos implements OnInit {
         }
 
       });
+
+  }
+
+  mudarPagina(event: PageEvent) {
+
+    this.paginaAtual =
+      event.pageIndex;
+
+    this.tamanhoPagina =
+      event.pageSize;
+
+    if (
+      this.termoBusca().trim()
+    ) {
+
+      this.buscarProdutos();
+
+    } else {
+
+      this.carregarProdutos();
+
+    }
 
   }
 
