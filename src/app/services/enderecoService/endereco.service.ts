@@ -24,6 +24,13 @@ export class EnderecoService {
     );
   }
 
+  listarTodos() {
+    return this.http.get<Endereco[]>(
+      `${this.api}/enderecos/meus/todos`
+  );
+
+}
+
   cadastrar(endereco: EnderecoRequest) {
     return this.http.post(
       `${this.api}/enderecos`,

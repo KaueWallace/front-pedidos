@@ -150,12 +150,12 @@ export class CarrinhoPage implements OnInit {
   finalizarCompra() {
 
     this.enderecoService
-      .listar()
+      .listarTodos()
       .subscribe({
 
-        next: page => {
+        next: enderecos => {
 
-          if (page.content.length === 0) {
+          if (enderecos.length === 0) {
 
             const snackBarRef = this.snackBar.open(
               'Cadastre um endereço antes de finalizar a compra.',
@@ -184,7 +184,7 @@ export class CarrinhoPage implements OnInit {
             {
               width: '600px',
               data: {
-                endereco: page.content
+                endereco: enderecos
               }
             }
           );
@@ -194,6 +194,7 @@ export class CarrinhoPage implements OnInit {
             .subscribe(enderecoId => {
 
               if (!enderecoId) {
+
                 this.snackBar.open(
                   'Selecione um endereço antes de finalizar a compra.',
                   'Ok',
@@ -202,6 +203,7 @@ export class CarrinhoPage implements OnInit {
                     panelClass: ['success-snackbar']
                   }
                 );
+
                 return;
               }
 
