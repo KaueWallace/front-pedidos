@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+
 import { Produtos } from './pages/produtos/produtos';
 import { Login } from './pages/login/login';
 import { MainLayout } from './pages/main-layout/main-layout';
@@ -14,12 +15,17 @@ import { AdminProdutos } from './pages/admin-produtos/admin-produtos';
 import { EditarProduto } from './pages/editar-produto/editar-produto';
 import { AdminPedidos } from './pages/admin-pedidos/admin-pedidos';
 
+import { authGuard } from './guards/auth-guard';
+import { adminGuard } from './guards/admin-guard';
+
 export const routes: Routes = [
+
     {
         path: '',
         redirectTo: 'login',
         pathMatch: 'full'
     },
+
     {
         path: 'login',
         component: Login
@@ -28,62 +34,87 @@ export const routes: Routes = [
     {
         path: '',
         component: MainLayout,
+        canActivate: [authGuard],
+
         children: [
 
             {
                 path: 'produtos',
                 component: Produtos
             },
+
             {
                 path: 'meus-pedidos',
                 component: MeusPedidos
             },
+
             {
                 path: 'meus-pedidos/:id',
                 component: DetalhePedido
             },
+
             {
                 path: 'enderecos',
                 component: Enderecos
             },
+
             {
                 path: 'enderecos/novo',
                 component: CadastrarEndereco
             },
+
             {
                 path: 'enderecos/editar/:id',
                 component: EditarEndereco
             },
+
             {
                 path: 'carrinho',
                 component: CarrinhoPage
             },
-            {
-                path: 'admin/produtos/novo',
-                component: CadastrarProduto
-            },
+
             {
                 path: 'admin',
-                component: AdminDashboard
+                component: AdminDashboard,
+                canActivate: [adminGuard]
             },
+
             {
                 path: 'admin/produtos',
-                component: AdminProdutos
+                component: AdminProdutos,
+                canActivate: [adminGuard]
             },
+
+            {
+                path: 'admin/produtos/novo',
+                component: CadastrarProduto,
+                canActivate: [adminGuard]
+            },
+
             {
                 path: 'admin/produtos/editar/:id',
-                component: EditarProduto
+                component: EditarProduto,
+                canActivate: [adminGuard]
             },
+
             {
                 path: 'admin/pedidos',
-                component: AdminPedidos
+                component: AdminPedidos,
+                canActivate: [adminGuard]
             },
+
             {
                 path: 'admin/pedidos/:id',
-                component: DetalhePedido
+                component: DetalhePedido,
+                canActivate: [adminGuard]
             }
-            
+
         ]
+    },
+
+    {
+        path: '**',
+        redirectTo: 'login'
     }
 
 ];
