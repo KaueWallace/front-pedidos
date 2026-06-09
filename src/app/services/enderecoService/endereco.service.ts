@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Endereco } from '../../models/pedidos/endereco';
 import { EnderecoRequest } from '../../models/enderecos/enderecoRequest';
+import { Page } from '../../models/page';
 
 @Injectable({
   providedIn: 'root',
@@ -11,9 +12,15 @@ export class EnderecoService {
 
   private api = `http://localhost:8080`
 
-  listar() {
-    return this.http.get<Endereco[]>(
-      `${this.api}/enderecos/meus`
+  listar(page = 0, size = 3) {
+    return this.http.get<Page<Endereco>>(
+      `${this.api}/enderecos/meus`,
+      {
+        params: {
+          page,
+          size
+        }
+      }
     );
   }
 

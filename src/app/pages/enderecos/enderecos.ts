@@ -8,7 +8,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { RouterLink } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialog } from '../../components/dialogs/confirm-dialog/confirm-dialog';
-
+import {
+  MatPaginatorModule,
+  PageEvent
+} from '@angular/material/paginator';
 
 @Component({
   selector: 'app-enderecos',
@@ -16,7 +19,8 @@ import { ConfirmDialog } from '../../components/dialogs/confirm-dialog/confirm-d
     EnderecoCard,
     MatIconModule,
     RouterLink,
-    ConfirmDialog
+    ConfirmDialog,
+    MatPaginatorModule
   ],
   templateUrl: './enderecos.html',
   styleUrl: './enderecos.css',
@@ -33,87 +37,126 @@ export class Enderecos implements OnInit {
 
   private dialog = inject(MatDialog);
 
+  totalItens = signal(0);
+
+  paginaAtual = 0;
+
+  tamanhoPagina = 3;
+
   ngOnInit(): void {
 
+    this.carregarEnderecos()
+
+  }
+
+  carregarEnderecos() {
+
     this.enderecoService
-      .listar()
+      .listar(
+        this.paginaAtual,
+        this.tamanhoPagina
+      )
       .subscribe({
-        next: enderecos => {
-          this.enderecos.set(enderecos);
+
+        next: page => {
+
+          this.enderecos.set(
+            page.content
+          );
+
+          this.totalItens.set(
+            page.totalElements
+          );
+
         }
+
       });
 
   }
 
-  openSnackBar(message: string, action: string){
-    this._snackBar.open(message, action, { duration: 2000, panelClass: 'success-snackbar'} );
+  mudarPagina(
+    event: PageEvent
+  ) {
+
+    this.paginaAtual =
+      event.pageIndex;
+
+    this.tamanhoPagina =
+      event.pageSize;
+
+    this.carregarEnderecos();
+
+  }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, { duration: 2000, panelClass: 'success-snackbar' });
   }
 
   excluirEndereco(id: number) {
 
-  const dialogRef = this.dialog.open(
-    ConfirmDialog,
-    {
-      width: '420px',
-      data: {
-        mensagem:
-          'Deseja realmente excluir este endereço?'
+    const dialogRef = this.dialog.open(
+      ConfirmDialog,
+      {
+        width: '420px',
+        data: {
+          mensagem:
+            'Deseja realmente excluir este endereço?'
+        }
       }
-    }
-  );
+    );
 
-  dialogRef
-    .afterClosed()
-    .subscribe(confirmado => {
+    dialogRef
+      .afterClosed()
+      .subscribe(confirmado => {
 
-      if (!confirmado) {
-        return;
-      }
+        if (!confirmado) {
+          return;
+        }
 
-      this.enderecoService
-        .excluir(id)
-        .subscribe({
+        this.enderecoService
+          .excluir(id)
+          .subscribe({
 
-          next: () => {
+            next: () => {
 
-            this.snackBar.open(
-              'Endereço removido com sucesso',
-              'Fechar',
-              {
-                duration: 3000,
-                panelClass: [
-                  'success-snackbar'
-                ]
-              }
-            );
+              this.snackBar.open(
+                'Endereço removido com sucesso',
+                'Fechar',
+                {
+                  duration: 3000,
+                  panelClass: [
+                    'success-snackbar'
+                  ]
+                }
+              );
 
-            this.enderecos.update(
-              enderecos =>
-                enderecos.filter(
-                  e => e.id !== id
-                )
-            );
+              this.enderecos.update(
+                enderecos =>
+                  enderecos.filter(
+                    e => e.id !== id
+                  )
+              );
 
-          },
+            },
 
-          error: (erro: any) => {
+            error: (erro: any) => {
 
-            this.snackBar.open(
-              erro.error?.message ??
-              'Erro ao remover endereço',
-              'Fechar',
-              {
-                duration: 4000
-              }
-            );
+              this.snackBar.open(
+                erro.error?.message ??
+                'Erro ao remover endereço',
+                'Fechar',
+                {
+                  duration: 4000
+                }
+              );
 
-          }
+            }
 
-        });
+          });
 
-    });
+      });
 
-}
+  }
 
 
 }

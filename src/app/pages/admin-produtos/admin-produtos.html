@@ -150,8 +150,8 @@
 
 }
 
-
-<div class="paginacao">
+@if(produtos().length > 0){
+    <div class="paginacao">
 
     <mat-paginator
         [length]="totalItens()"
@@ -162,3 +162,5 @@
     </mat-paginator>
 
 </div>
+}
+

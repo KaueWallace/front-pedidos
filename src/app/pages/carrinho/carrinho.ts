@@ -153,9 +153,9 @@ export class CarrinhoPage implements OnInit {
       .listar()
       .subscribe({
 
-        next: enderecos => {
+        next: page => {
 
-          if (enderecos.length === 0) {
+          if (page.content.length === 0) {
 
             const snackBarRef = this.snackBar.open(
               'Cadastre um endereço antes de finalizar a compra.',
@@ -184,7 +184,7 @@ export class CarrinhoPage implements OnInit {
             {
               width: '600px',
               data: {
-                enderecos
+                endereco: page.content
               }
             }
           );
