@@ -20,6 +20,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
+import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-admin-produtos',
@@ -29,7 +30,8 @@ import { MatInputModule } from '@angular/material/input';
     MatIconModule,
     MatFormFieldModule,
     FormsModule,
-    MatInputModule
+    MatInputModule,
+    MatPaginatorModule
   ],
 
   templateUrl: './admin-produtos.html',
@@ -53,6 +55,12 @@ export class AdminProdutos
 
   termoBusca = signal('');
 
+  totalItens = signal(0);
+
+  paginaAtual = 0;
+
+  tamanhoPagina = 3;
+
   ngOnInit(): void {
 
     this.carregarProdutos();
@@ -62,7 +70,7 @@ export class AdminProdutos
   carregarProdutos() {
 
     this.produtoService
-      .listar()
+      .listar(this.paginaAtual, this.tamanhoPagina)
       .subscribe({
 
         next: page => {
@@ -70,6 +78,10 @@ export class AdminProdutos
           this.produtos.set(
             page.content
           );
+
+          this.totalItens.set(
+            page.totalElements
+          )
 
         }
 
@@ -164,6 +176,8 @@ export class AdminProdutos
 
     if (!nome) {
 
+      this.paginaAtual = 0;
+
       this.carregarProdutos();
 
       return;
@@ -171,7 +185,11 @@ export class AdminProdutos
     }
 
     this.produtoService
-      .buscar(nome)
+      .buscar(
+        nome,
+        this.paginaAtual,
+        this.tamanhoPagina
+      )
       .subscribe({
 
         next: page => {
@@ -180,9 +198,37 @@ export class AdminProdutos
             page.content
           );
 
+          this.totalItens.set(
+            page.totalElements
+          );
+
         }
 
       });
+
+  }
+
+  mudarPagina(
+    event: PageEvent
+  ) {
+
+    this.paginaAtual =
+      event.pageIndex;
+
+    this.tamanhoPagina =
+      event.pageSize;
+
+    if (
+      this.termoBusca().trim()
+    ) {
+
+      this.buscarProdutos();
+
+    } else {
+
+      this.carregarProdutos();
+
+    }
 
   }
 

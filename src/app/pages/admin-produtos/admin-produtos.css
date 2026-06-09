@@ -269,3 +269,32 @@
 .busca mat-form-field {
     flex: 1;
 }
+
+mat-paginator {
+    margin-top: 32px;
+
+    background: white;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 4px 20px rgba(124, 115, 192, .08);
+
+    overflow: hidden;
+}
+
+.paginacao {
+
+    display: flex;
+
+    justify-content: center;
+}
+
+.paginacao mat-paginator {
+    border-radius: 20px;
+
+    background: white;
+
+    box-shadow:
+        0 4px 20px rgba(124, 115, 192, .08);
+}

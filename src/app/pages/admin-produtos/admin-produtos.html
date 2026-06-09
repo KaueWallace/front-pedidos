@@ -149,3 +149,16 @@
 </div>
 
 }
+
+
+<div class="paginacao">
+
+    <mat-paginator
+        [length]="totalItens()"
+        [pageSize]="tamanhoPagina"
+        [pageSizeOptions]="[3, 4, 8, 12, 16]"
+        showFirstLastButtons
+        (page)="mudarPagina($event)">
+    </mat-paginator>
+
+</div>
