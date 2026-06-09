@@ -11,20 +11,20 @@ export class PedidoService {
   private http = inject(HttpClient);
   private api = `http://localhost:8080`;
 
-  listarTodosPedidos(status?: string) {
+  listarTodosPedidos(status?: string, page = 0, size = 3) {
 
-    let params = {};
+    let params: any = {
+      page,
+      size
+    };
 
-    if (status &&
-      status !== 'TODOS') {
+    if (status && status !== 'TODOS') {
 
-      params = {
-        status
-      };
+      params.status = status;
 
     }
 
-    return this.http.get<Pedido[]>(
+    return this.http.get<Page<Pedido>>(
       `${this.api}/pedidos`,
       {
         params

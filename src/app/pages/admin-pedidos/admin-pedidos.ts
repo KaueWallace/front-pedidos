@@ -17,6 +17,10 @@ import {
   MatSelectModule
 } from '@angular/material/select';
 
+import {
+  MatPaginatorModule,
+  PageEvent
+} from '@angular/material/paginator';
 
 import { PedidoService } from '../../services/pedidoService/pedido.service';
 import { Pedido } from '../../models/pedidos/pedido';
@@ -30,6 +34,7 @@ import { RouterLink } from '@angular/router';
     MatIconModule,
     MatFormFieldModule,
     MatSelectModule,
+    MatPaginatorModule,
     DatePipe,
     RouterLink
   ],
@@ -50,7 +55,15 @@ export class AdminPedidos
   pedidos =
     signal<Pedido[]>([]);
 
-  statusSelecionado = signal('TODOS');
+  totalItens =
+    signal(0);
+
+  statusSelecionado =
+    signal('TODOS');
+
+  paginaAtual = 0;
+
+  tamanhoPagina = 3;
 
   ngOnInit(): void {
 
@@ -61,13 +74,21 @@ export class AdminPedidos
   carregarPedidos(): void {
 
     this.pedidoService
-      .listarTodosPedidos()
+      .listarTodosPedidos(
+        this.statusSelecionado(),
+        this.paginaAtual,
+        this.tamanhoPagina
+      )
       .subscribe({
 
-        next: pedidos => {
+        next: page => {
 
           this.pedidos.set(
-            pedidos
+            page.content
+          );
+
+          this.totalItens.set(
+            page.totalElements
           );
 
         },
@@ -113,23 +134,7 @@ export class AdminPedidos
             }
           );
 
-          this.pedidos.update(
-            pedidos =>
-              pedidos.map(pedido =>
-
-                pedido.id === pedidoId
-                  ? {
-                    ...pedido,
-                    status
-                  }
-                  : pedido
-
-              )
-          );
-
-          this.filtrar(
-            this.statusSelecionado()
-          );
+          this.carregarPedidos();
 
         },
 
@@ -150,30 +155,31 @@ export class AdminPedidos
 
   }
 
-
-  filtrar(status: string) {
+  filtrar(
+    status: string
+  ) {
 
     this.statusSelecionado.set(
       status
     );
 
-    this.pedidoService
-      .listarTodosPedidos(
-        status
-      )
-      .subscribe({
+    this.paginaAtual = 0;
 
-        next: pedidos => {
+    this.carregarPedidos();
 
-          this.pedidos.set(
-            pedidos
-          );
+  }
 
+  mudarPagina(
+    event: PageEvent
+  ) {
 
+    this.paginaAtual =
+      event.pageIndex;
 
-        }
+    this.tamanhoPagina =
+      event.pageSize;
 
-      });
+    this.carregarPedidos();
 
   }
 
