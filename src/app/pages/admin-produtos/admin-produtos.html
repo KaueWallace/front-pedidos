@@ -9,6 +9,7 @@
     Voltar para administração
 
 </button>
+
 <div class="header">
 
     <h1>
@@ -29,6 +30,27 @@
 
 </div>
 
+<div class="busca">
+
+    <mat-form-field appearance="outline">
+
+        <mat-label>
+            Buscar produto
+        </mat-label>
+
+        <input
+            matInput
+            [(ngModel)]="termoBusca"
+            (ngModelChange)="buscarProdutos()">
+
+        <mat-icon matSuffix>
+            search
+        </mat-icon>
+
+    </mat-form-field>
+
+</div>
+
 @if (produtos().length === 0) {
 
 <div class="empty-state">
@@ -36,6 +58,19 @@
     <mat-icon>
         inventory_2
     </mat-icon>
+
+    @if (termoBusca().trim()) {
+
+    <h2>
+        Nenhum produto encontrado
+    </h2>
+
+    <p>
+        Nenhum resultado foi encontrado para
+        "{{ termoBusca() }}".
+    </p>
+
+    } @else {
 
     <h2>
         Nenhum produto cadastrado
@@ -45,6 +80,7 @@
         Cadastre seu primeiro produto para começar as vendas.
     </p>
 
+    }
 
 </div>
 
@@ -69,7 +105,10 @@
         </p>
 
         <p class="estoque">
-            Estoque: <span [style.color]="corEstoque(produto)">{{ produto.estoque }} unidades</span>
+            Estoque:
+            <span [style.color]="corEstoque(produto)">
+                {{ produto.estoque }} unidades
+            </span>
         </p>
 
         <div class="acoes">
@@ -92,7 +131,7 @@
             <button
                 class="btn-excluir"
                 (click)="excluirProduto(produto.id)">
-                
+
                 <mat-icon>
                     delete
                 </mat-icon>

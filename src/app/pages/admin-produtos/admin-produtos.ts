@@ -17,13 +17,19 @@ import { ConfirmDialog } from '../../components/dialogs/confirm-dialog/confirm-d
 
 import { MatDialog } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { FormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-admin-produtos',
 
   imports: [
     RouterLink,
-    MatIconModule
+    MatIconModule,
+    MatFormFieldModule,
+    FormsModule,
+    MatInputModule
   ],
 
   templateUrl: './admin-produtos.html',
@@ -44,6 +50,8 @@ export class AdminProdutos
 
   produtos =
     signal<Produto[]>([]);
+
+  termoBusca = signal('');
 
   ngOnInit(): void {
 
@@ -147,6 +155,35 @@ export class AdminProdutos
 
     return 'var(--error)';
   }
-  
+
+
+  buscarProdutos() {
+
+    const nome =
+      this.termoBusca().trim();
+
+    if (!nome) {
+
+      this.carregarProdutos();
+
+      return;
+
+    }
+
+    this.produtoService
+      .buscar(nome)
+      .subscribe({
+
+        next: produtos => {
+
+          this.produtos.set(
+            produtos
+          );
+
+        }
+
+      });
+
+  }
 
 }

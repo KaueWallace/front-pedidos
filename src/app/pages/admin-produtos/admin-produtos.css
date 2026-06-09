@@ -61,7 +61,7 @@
 .grid {
     display: grid;
 
-    justify-content: space-around;
+    justify-content: space-between;
 
     grid-template-columns:
         repeat(3, minmax(280px, 25%));
@@ -256,4 +256,16 @@
     cursor: pointer;
 
     text-decoration: none;
+}
+
+.busca {
+    display: flex;
+
+    gap: 12px;
+
+    margin-bottom: 32px;
+}
+
+.busca mat-form-field {
+    flex: 1;
 }

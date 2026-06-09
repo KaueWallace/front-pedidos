@@ -28,12 +28,25 @@ export class ProdutoService {
       `${this.api}/${id}`
     );
 
-}
+  }
+
+  buscar(nome: string) {
+
+    return this.http.get<Produto[]>(
+      `${this.api}/buscar`,
+      {
+        params: {
+          nome
+        }
+      }
+    );
+
+  }
 
   atualizar(id: number, produto: ProdutoRequest) {
     return this.http.put(`${this.api}/${id}`, produto);
 
-}
+  }
 
   excluir(id: number) {
     return this.http.delete(
