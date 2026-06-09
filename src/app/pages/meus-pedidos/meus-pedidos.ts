@@ -1,4 +1,5 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
+
 import { Pedido } from '../../models/pedidos/pedido';
 import { PedidoService } from '../../services/pedidoService/pedido.service';
 
@@ -9,54 +10,75 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSelectModule } from '@angular/material/select';
 import { FormsModule } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+
 import { ConfirmDialog } from '../../components/dialogs/confirm-dialog/confirm-dialog';
-import { DatePipe } from '@angular/common';
 
-
+import {
+  MatPaginatorModule,
+  PageEvent
+} from '@angular/material/paginator';
 
 @Component({
   selector: 'app-meus-pedidos',
-  imports: [MatIconModule, RouterLink, PedidoCard, MatSelectModule, FormsModule, ConfirmDialog],
+  imports: [
+    MatIconModule,
+    RouterLink,
+    PedidoCard,
+    MatSelectModule,
+    FormsModule,
+    ConfirmDialog,
+    MatPaginatorModule
+  ],
   templateUrl: './meus-pedidos.html',
   styleUrl: './meus-pedidos.css',
 })
 export class MeusPedidos implements OnInit {
-  private pedidoService = inject(PedidoService);
 
-  private snackBar = inject(
-    MatSnackBar
-  );
+  private pedidoService =
+    inject(PedidoService);
 
-  private dialog = inject(MatDialog);
+  private snackBar =
+    inject(MatSnackBar);
 
-  pedidos = signal<Pedido[]>([]);
+  private dialog =
+    inject(MatDialog);
+
+  pedidos =
+    signal<Pedido[]>([]);
+
+  totalItens =
+    signal(0);
 
   filtroStatus = '';
 
+  paginaAtual = 0;
+
+  tamanhoPagina = 3;
+
   ngOnInit(): void {
 
-    this.pedidoService
-      .listarMeusPedidos()
-      .subscribe({
-        next: pedidos => {
-          this.pedidos.set(pedidos);
-        }
-      });
+    this.carregarPedidos();
 
   }
 
-  filtrarPedidos() {
+  carregarPedidos() {
 
     this.pedidoService
       .listarMeusPedidos(
-        this.filtroStatus || undefined
+        this.filtroStatus || undefined,
+        this.paginaAtual,
+        this.tamanhoPagina
       )
       .subscribe({
 
-        next: pedidos => {
+        next: page => {
 
           this.pedidos.set(
-            pedidos
+            page.content
+          );
+
+          this.totalItens.set(
+            page.totalElements
           );
 
         }
@@ -65,18 +87,41 @@ export class MeusPedidos implements OnInit {
 
   }
 
+  filtrarPedidos() {
+
+    this.paginaAtual = 0;
+
+    this.carregarPedidos();
+
+  }
+
+  mudarPagina(
+    event: PageEvent
+  ) {
+
+    this.paginaAtual =
+      event.pageIndex;
+
+    this.tamanhoPagina =
+      event.pageSize;
+
+    this.carregarPedidos();
+
+  }
+
   cancelarPedido(id: number) {
 
-    const dialogRef = this.dialog.open(
-      ConfirmDialog,
-      {
-        width: '400px',
-        data: {
-          mensagem:
-            'Deseja realmente cancelar este pedido?'
+    const dialogRef =
+      this.dialog.open(
+        ConfirmDialog,
+        {
+          width: '400px',
+          data: {
+            mensagem:
+              'Deseja realmente cancelar este pedido?'
+          }
         }
-      }
-    );
+      );
 
     dialogRef
       .afterClosed()
@@ -103,19 +148,7 @@ export class MeusPedidos implements OnInit {
                 }
               );
 
-              this.pedidoService
-                .listarMeusPedidos()
-                .subscribe({
-
-                  next: pedidos => {
-
-                    this.pedidos.set(
-                      pedidos
-                    );
-
-                  }
-
-                });
+              this.carregarPedidos();
 
             },
 
@@ -137,4 +170,5 @@ export class MeusPedidos implements OnInit {
       });
 
   }
+
 }

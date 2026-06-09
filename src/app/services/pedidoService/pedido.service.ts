@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Pedido } from '../../models/pedidos/pedido';
 import { PedidoRequest } from '../../models/pedidos/pedidoRequest';
+import { Page } from '../../models/page';
 
 @Injectable({
   providedIn: 'root',
@@ -32,18 +33,27 @@ export class PedidoService {
 
   }
 
-  listarMeusPedidos(status?: string) {
+  listarMeusPedidos(
+    status?: string,
+    page = 0,
+    size = 3
+  ) {
 
-    if (status) {
+    let params: any = {
+      page,
+      size
+    };
 
-      return this.http.get<Pedido[]>(
-        `${this.api}/pedidos/meus?status=${status}`
-      );
-
+    if (status && status !== 'TODOS'
+    ) {
+      params.status = status;
     }
 
-    return this.http.get<Pedido[]>(
-      `${this.api}/pedidos/meus`
+    return this.http.get<Page<Pedido>>(
+      `${this.api}/pedidos/meus`,
+      {
+        params
+      }
     );
 
   }
@@ -54,7 +64,7 @@ export class PedidoService {
     );
   }
 
-  buscarPorId(id: number){
+  buscarPorId(id: number) {
     return this.http.get<Pedido>(
       `${this.api}/pedidos/${id}`
     )

@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 
 import {
   MAT_DIALOG_DATA,
@@ -12,7 +12,11 @@ import { Endereco } from '../../../models/enderecos/endereco'
   templateUrl: './selecionar-endereco-dialog.html',
   styleUrl: './selecionar-endereco-dialog.css',
 })
-export class SelecionarEnderecoDialog {
+export class SelecionarEnderecoDialog implements OnInit {
+
+  ngOnInit(): void {
+    console.log(this.data.endereco)
+  }
 
   data = inject(MAT_DIALOG_DATA);
 
