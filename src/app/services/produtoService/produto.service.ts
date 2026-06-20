@@ -11,7 +11,7 @@ import { Page } from '../../models/page';
 export class ProdutoService {
   private http = inject(HttpClient);
 
-  private api = 'http://localhost:8080/produtos';
+  private api = 'http://172.1.5.60:8010/produtos';
 
   listar(page = 0, size = 3) {
     return this.http.get<Page<Produto>>(

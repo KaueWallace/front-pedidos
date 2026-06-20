@@ -10,7 +10,7 @@ export class CarrinhoService {
 
   private http = inject(HttpClient);
 
-  private api = 'http://localhost:8080/carrinho';
+  private api = 'http://172.1.5.60:8010/carrinho';
 
 
   quantidadeItens = signal<number>(0);
