@@ -9,7 +9,7 @@ import { Page } from '../../models/page';
 })
 export class PedidoService {
   private http = inject(HttpClient);
-  private api = `http://172.1.25.60:8010`;
+  private api = `http://172.25.1.60:8010`;
 
   listarTodosPedidos(status?: string, page = 0, size = 3) {
 
