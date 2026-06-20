@@ -10,7 +10,7 @@ import { Page } from '../../models/page';
 export class EnderecoService {
   private http = inject(HttpClient)
 
-  private api = `http://172.1.5.60:8010`
+  private api = `http://172.1.25.60:8010`
 
   listar(page = 0, size = 3) {
     return this.http.get<Page<Endereco>>(

@@ -12,7 +12,7 @@ export class AuthService {
   private http = inject(HttpClient);
   private router = inject(Router);
 
-  private api = 'http://172.1.5.60:8010/auth';
+  private api = 'http://172.1.25.60:8010/auth';
 
   login(dados: LoginRequest): Observable<LoginResponse> {
     return this.http.post<LoginResponse>(
